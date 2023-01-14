@@ -1,0 +1,34 @@
+<div class="container-fluid" style="margin-top: 16px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>{{'Accueil' | traduction}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{'Objectifs annuels' | traduction}}</li>
+        </ol>
+    </nav>
+    <h1>{{'Objectifs annuels' | traduction}}</h1>
+    <p>
+        {{'Retrouvez tous les objectifglobals ici' | traduction}}
+    </p>
+
+    <div class=" page-contenu ">
+        <div class="">
+            <div class="">
+                <table datatable [dtOptions]="dtOptions " [dtTrigger]="dtTrigger " class="row-border hover ">
+                    <thead>
+                        <tr>
+                            <th>{{"Année" | traduction}}</th>
+                            <th>{{'Montant' | traduction}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let objectifglobal of objectifglobals" (click)="edit(objectifglobal)">
+                            <td>{{objectifglobal.annee}}</td>
+                            <td>{{objectifglobal.montant | nombre}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

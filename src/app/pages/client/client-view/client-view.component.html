@@ -1,0 +1,83 @@
+<div class="container-fluid" style="margin-top: 16px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>{{'Accueil' | traduction}}</a></li>
+            <li class="breadcrumb-item"><a class="text-primary" [routerLink]="'/client'">{{'Clients' | traduction}}</a></li>
+            <li class="breadcrumb-item active" *ngIf="isNewClient">{{'Nouveau' | traduction}}</li>
+
+            <li class="breadcrumb-item active" *ngIf="!isNewClient">
+                {{client.nom}}
+            </li>
+        </ol>
+    </nav>
+
+    <a class="text-primary" [routerLink]="'/client/edit/' + client.id" style="float: right;">{{'Modifier' | traduction}}</a>
+    <h1 *ngIf="!isNewClient" class="titre">
+        {{client.nom}}
+    </h1>
+
+    <div class="first-step">
+        <div class="stats mb-4 mt-4">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="text-bg-primary text-center p-3">
+                        <h1>
+                            {{getObjectif().montant | nombre}}
+                        </h1>
+                        <div>
+                            Objectif pour le {{getObjectif().dateFin | date: 'yyyy-MM-dd'}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="text-bg-primary text-center p-3">
+                        <h1>
+                            {{0}}
+                        </h1>
+                        <div>
+                            Product items
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="text-bg-primary text-center p-3">
+                        <h1>
+                            {{0}}
+                        </h1>
+                        <div>
+                            Sales
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=" page-contenu mt-3">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <p>
+                                    {{'Informations' | traduction}}
+                                </p>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Code" | traduction}}</span>
+                                <input [(ngModel)]="client.code" type="text" class="form-control">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Noms" | traduction}}</span>
+                                <input [(ngModel)]="client.nom" type="text" class="form-control">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Prénoms" | traduction}}</span>
+                                <input [(ngModel)]="client.tel" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

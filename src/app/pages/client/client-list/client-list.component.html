@@ -1,0 +1,36 @@
+<div class="container-fluid" style="margin-top: 16px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>{{'Accueil' | traduction}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{'Clients' | traduction}}</li>
+        </ol>
+    </nav>
+    <h1>{{'Clients' | traduction}}</h1>
+    <p>
+        {{'Retrouvez tous vos clients ici' | traduction}}
+    </p>
+
+    <div class=" page-contenu ">
+        <div class="">
+            <div class="">
+                <table datatable [dtOptions]="dtOptions " [dtTrigger]="dtTrigger " class="row-border hover ">
+                    <thead>
+                        <tr>
+                            <th>{{"Code" | traduction}}</th>
+                            <th>{{'Nom' | traduction}}</th>
+                            <th>{{'Téléphone' | traduction}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let client of clients" (click)="edit(client)">
+                            <td>{{client.code}}</td>
+                            <td>{{client.nom}}</td>
+                            <td>{{client.tel}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

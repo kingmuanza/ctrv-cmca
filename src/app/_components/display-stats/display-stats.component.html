@@ -1,0 +1,48 @@
+<div class="stats mb-4 mt-4">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="bg-jaune text-center p-1"></div>
+            <div class="text-bg-primary text-center p-3">
+                <h2>
+                    {{totalObjectifs | nombre}}
+                </h2>
+                <div class="libelle">
+                    Objectif total
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="bg-bleu-clair text-center p-1"></div>
+            <div class="text-bg-primary text-center p-3">
+                <h2>
+                    {{totalProformasNonValidees + totalProformasValidees | nombre}}
+                </h2>
+                <div class="libelle">
+                    Proformas émises
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="bg-orange text-center p-1"></div>
+            <div class="text-bg-primary text-center p-3">
+                <h2>
+                    {{totalProformasValidees | nombre}}
+                </h2>
+                <div class="libelle">
+                    Proformas validées
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="bg-vert text-center p-1"></div>
+            <div class="text-bg-primary text-center p-3">
+                <h2>
+                    {{totalRecouvrements | nombre}}
+                </h2>
+                <div class="libelle">
+                    Recouvrements
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

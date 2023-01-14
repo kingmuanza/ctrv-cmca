@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ccma-crtv": {
+      "hosting": {
+        "crtv": [
+          "ccma-crtv"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ccma-crtv"
+  }
+}

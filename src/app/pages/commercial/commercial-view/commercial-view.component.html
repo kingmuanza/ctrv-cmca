@@ -1,0 +1,130 @@
+<div class="container-fluid" style="margin-top: 16px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>{{'Accueil' | traduction}}</a></li>
+            <li class="breadcrumb-item"><a class="text-primary" [routerLink]="'/commercial'">{{'Commercials' | traduction}}</a></li>
+            <li class="breadcrumb-item active" *ngIf="isNewCommercial">{{'Nouveau' | traduction}}</li>
+
+            <li class="breadcrumb-item active" *ngIf="!isNewCommercial">
+                {{commercial.noms}} {{commercial.prenoms}}
+            </li>
+        </ol>
+    </nav>
+
+    <a class="text-primary" [routerLink]="'/commercial/edit/' + commercial.id" style="float: right;">{{'Modifier' | traduction}}</a>
+    <h1 *ngIf="!isNewCommercial" class="titre">
+        {{commercial.noms}} {{commercial.prenoms}}
+    </h1>
+    <div class="col-lg-4">
+        <div class="input-group mb-3">
+            <span class="input-group-text">{{"Année" | traduction}}</span>
+            <select [(ngModel)]="annee" class="form-control">
+                <option [value]="2022">2022</option>
+                <option [value]="2023">2023</option>
+            </select>
+            <button (click)="refreshAll()" class="btn btn-primary">
+                Générer
+            </button>
+        </div>
+    </div>
+
+    <div class="first-step">
+
+        <div class="stats mb-4 mt-4">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="text-bg-primary text-center p-3">
+                        <h1>
+                            {{totalObjectifs | nombre}}
+                        </h1>
+                        <div>
+                            Objectif total
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="text-bg-primary text-center p-3">
+                        <h1>
+                            {{totalProformasNonValidees + totalProformasValidees | nombre}}
+                        </h1>
+                        <div>
+                            Proformas émises
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="text-bg-primary text-center p-3">
+                        <h1>
+                            {{totalProformasValidees | nombre}}
+                        </h1>
+                        <div>
+                            Proformas validées
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="text-bg-primary text-center p-3">
+                        <h1>
+                            {{totalRecouvrements | nombre}}
+                        </h1>
+                        <div>
+                            Recouvrements
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="card shadow-sm">
+                    <div class="card-body" style="height: 450px;">
+                        <canvas id="commercial-radial"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="card shadow-sm">
+                    <div class="card-body" style="height: 450px;">
+                        <canvas id="commercial-bar"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=" page-contenu mt-3">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <p>
+                                    {{'Informations' | traduction}}
+                                </p>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Code" | traduction}}</span>
+                                <input [(ngModel)]="commercial.code" type="text" class="form-control">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Noms" | traduction}}</span>
+                                <input [(ngModel)]="commercial.noms" type="text" class="form-control">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Prénoms" | traduction}}</span>
+                                <input [(ngModel)]="commercial.prenoms" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body" style="height: 450px; text-align: center;">
+                            <canvas id="commercial-circulaire"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

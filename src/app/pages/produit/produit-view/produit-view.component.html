@@ -1,0 +1,48 @@
+<div class="container-fluid" style="margin-top: 16px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>{{'Accueil' | traduction}}</a></li>
+            <li class="breadcrumb-item"><a class="text-primary" [routerLink]="'/produit'">{{'Produits' | traduction}}</a></li>
+            <li class="breadcrumb-item active" *ngIf="isNewProduit">{{'Nouveau' | traduction}}</li>
+
+            <li class="breadcrumb-item active" *ngIf="!isNewProduit">{{produit.nom}}</li>
+        </ol>
+    </nav>
+
+    <a class="text-primary" [routerLink]="'/produit/edit/' + produit.id" style="float: right;">{{'Modifier' | traduction}}</a>
+    <h1 *ngIf="!isNewProduit" class="titre">
+        {{produit.nom}}
+    </h1>
+
+    <div class="first-step">
+
+        <div class=" page-contenu mt-3">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <p>
+                                    {{'Informations' | traduction}}
+                                </p>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Code" | traduction}}</span>
+                                <input [(ngModel)]="produit.code" type="text" class="form-control">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Nom" | traduction}}</span>
+                                <input [(ngModel)]="produit.nom" type="text" class="form-control">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Prix" | traduction}}</span>
+                                <input [(ngModel)]="produit.prix" type="number" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

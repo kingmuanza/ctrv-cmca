@@ -1,0 +1,36 @@
+<div class="container-fluid" style="margin-top: 16px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>{{'Accueil' | traduction}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{'Produits' | traduction}}</li>
+        </ol>
+    </nav>
+    <h1>{{'Produits' | traduction}}</h1>
+    <p>
+        {{'Retrouvez tous les produits ici' | traduction}}
+    </p>
+
+    <div class=" page-contenu ">
+        <div class="">
+            <div class="">
+                <table datatable [dtOptions]="dtOptions " [dtTrigger]="dtTrigger " class="row-border hover ">
+                    <thead>
+                        <tr>
+                            <th>{{"Code" | traduction}}</th>
+                            <th>{{'Nom' | traduction}}</th>
+                            <th>{{'Prix' | traduction}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let produit of produits" (click)="edit(produit)">
+                            <td>{{produit.code}}</td>
+                            <td>{{produit.nom}}</td>
+                            <td>{{produit.prix | nombre}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

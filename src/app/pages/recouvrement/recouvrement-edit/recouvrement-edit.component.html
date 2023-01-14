@@ -1,0 +1,74 @@
+<div class="container-fluid" style="margin-top: 16px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>{{'Accueil' | traduction}}</a></li>
+            <li class="breadcrumb-item"><a class="text-primary" [routerLink]="'/recouvrement'">{{'Recouvrements' |
+                    traduction}}</a></li>
+            <li class="breadcrumb-item active" *ngIf="isNewRecouvrement">{{'Nouveau' | traduction}}</li>
+
+            <li class="breadcrumb-item active" *ngIf="!isNewRecouvrement">
+                <a class="text-primary" [routerLink]="'/recouvrement/view/' + recouvrement.id">
+                    Recouvrement {{recouvrement.id}} de {{recouvrement.proforma.id}} au montant de {{recouvrement.proforma.montant | nombre}}
+                </a>
+            </li>
+
+            <li class="breadcrumb-item active" *ngIf="!isNewRecouvrement">{{'Editer' | traduction}}</li>
+        </ol>
+    </nav>
+
+    <h1 *ngIf="!isNewRecouvrement" class="titre">
+        <button style="float: right;" (click)="delete()" class="btn btn-danger btn-error">
+            {{'Supprimer' | traduction}}
+        </button> {{'Modifier' | traduction}} le recouvrement {{recouvrement.id}} de {{recouvrement.proforma.id}} au montant de {{recouvrement.proforma.montant | nombre}}
+    </h1>
+    <h1 *ngIf="isNewRecouvrement" class="titre">{{'Ajouter un recouvrement' | traduction}}</h1>
+
+    <div class="first-step">
+        <p>
+            {{'Informations' | traduction}}
+        </p>
+        <div class=" page-contenu ">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Proforma" | traduction}}</span>
+                        <select [(ngModel)]="recouvrement.proforma" on (ngModelChange)="updateMontant($event)" type="date" class="form-control">
+                            <ng-container  *ngFor="let proforma of proformas">
+                            <option [ngValue]="proforma" *ngIf="!proforma.statut">
+                                {{proforma.id}}
+                                &nbsp;
+                                {{proforma.client.nom}}
+                                &nbsp;
+                                {{proforma.montantValidee | nombre}}
+                                &nbsp;
+                                {{proforma.date | date:'yyyy-MM-dd'}}
+                            </option>
+                            </ng-container>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Date du recouvrement" | traduction}}</span>
+                        <input type="date" [ngModel]="recouvrement.date | date:'yyyy-MM-dd'" (ngModelChange)="recouvrement.date = $event" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Montant" | traduction}}</span>
+                        <input [(ngModel)]="recouvrement.montant" type="number" class="form-control">
+                        <button class="btn btn-primary">
+                            XAF
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button (click)="save()" class="btn btn-primary">
+                    {{'Enregistrer' | traduction}}
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>

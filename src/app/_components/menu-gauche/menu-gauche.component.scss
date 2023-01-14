@@ -1,0 +1,35 @@
+.menu-gauche {
+    position: relative;
+    height: 100vh;
+    ul {
+        li {
+            a {
+                color: white;
+                &.active {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+
+.deconnexion {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    a {
+        cursor: pointer;
+        color: white;
+        text-decoration: none;
+        &:hover {
+            font-weight: bold;
+        }
+    }
+}
+
+.monprofil {
+    cursor: pointer;
+    &:hover {
+        opacity: 0.9;
+    }
+}

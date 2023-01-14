@@ -1,0 +1,55 @@
+<div class="menu-gauche text-bg-primary shadow-lg">
+    <div class="deconnexion">
+        <a (click)="deconnexion()">
+            Déconnexion
+        </a>
+    </div>
+
+    <div class="pt-2 mb-4 monprofil" (click)="monprofil()">
+        <div class="ms-3 mt-4 mb-2" style="height: 70px; width: 70px; background-color: white; border-radius: 35px;">
+
+        </div>
+        <div class="ms-3">
+            <b style="font-size: 1.2em;">
+                @{{utilisateur?.login}},
+            </b>
+            <span>
+                {{libelleProfil}}
+            </span>
+        </div>
+    </div>
+    <div class="mt-4">
+        <ul class="nav flex-column">
+            <li *ngIf="access.accueil" class="nav-item">
+                <a class="nav-link" routerLink="/accueil" routerLinkActive="active">{{'Accueil' | traduction}}</a>
+            </li>
+            <li *ngIf="access.produits" class="nav-item">
+                <a class="nav-link" routerLink="/produit" routerLinkActive="active">{{"Produits" | traduction}}</a>
+            </li>
+            <li *ngIf="access.commerciaux" class="nav-item">
+                <a class="nav-link" routerLink="/commercial" routerLinkActive="active">{{'Commerciaux' | traduction}}</a>
+            </li>
+            <li *ngIf="access.assistants" class="nav-item">
+                <a class="nav-link" routerLink="/assistant" routerLinkActive="active">{{'Assistants de vente' | traduction}}</a>
+            </li>
+            <li *ngIf="access.objectifsCommerciaux" class="nav-item">
+                <a class="nav-link" routerLink="/objectif" routerLinkActive="active">{{'Objectifs commerciaux' | traduction}}</a>
+            </li>
+            <li *ngIf="access.objectifsAnnuels" class="nav-item">
+                <a class="nav-link" routerLink="/objectifglobal" routerLinkActive="active">{{'Objectifs annuels' | traduction}}</a>
+            </li>
+            <li *ngIf="access.clients" class="nav-item">
+                <a class="nav-link" routerLink="/client" routerLinkActive="active">{{'Clients' | traduction}}</a>
+            </li>
+            <li *ngIf="access.proforma" class="nav-item">
+                <a class="nav-link" routerLink="/proforma" routerLinkActive="active">{{'Proforma' | traduction}}</a>
+            </li>
+            <li *ngIf="access.proformaValidation" class="nav-item">
+                <a class="nav-link" routerLink="/proformavalide" routerLinkActive="active">{{'Proforma validation' | traduction}}</a>
+            </li>
+            <li *ngIf="access.recouvrements" class="nav-item">
+                <a class="nav-link" routerLink="/recouvrement" routerLinkActive="active">{{'Recouvrements' | traduction}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

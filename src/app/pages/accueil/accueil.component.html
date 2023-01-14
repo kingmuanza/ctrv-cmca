@@ -1,0 +1,89 @@
+<div *ngIf="utilisateur && utilisateur?.profil === 'ADMIN'" class="container-fluid" style="margin-top: 16px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>{{'Accueil' | traduction}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{'Tableau de bord' | traduction}}</li>
+        </ol>
+    </nav>
+    <h1>{{'Tableau de bord' | traduction}}</h1>
+
+    <div class="col-lg-4">
+        <div class="input-group mb-3">
+            <span class="input-group-text">{{"Année" | traduction}}</span>
+            <select [(ngModel)]="annee" class="form-control">
+                <option [value]="2022">2022</option>
+                <option [value]="2023">2023</option>
+            </select>
+            <button (click)="refreshAll()" class="btn btn-primary">
+                Générer
+            </button>
+        </div>
+    </div>
+    <p>
+        {{'Retouvez toutes les évolutions des activités commerciales' | traduction}} de l'année {{annee}}
+    </p>
+
+    <app-display-stats [annee]="annee" [recouvrements]="recouvrements" [proformas]="proformas">
+
+    </app-display-stats>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-body" style="height: 480px; text-align: center; overflow: hidden;">
+                    <app-display-doughnut-chart [annee]="annee" [recouvrements]="recouvrements" [proformas]="proformas"></app-display-doughnut-chart>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body" style="height: 480px;">
+                    <canvas id="acquisitions"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body" style="min-height: 480px;">
+                    <table datatable [dtOptions]="dtOptions " [dtTrigger]="dtTrigger " class="row-border hover ">
+                        <thead>
+                            <tr>
+                                <th>{{"Année" | traduction}}</th>
+                                <th>{{"Commercial" | traduction}}</th>
+                                <th style="text-align: right;">{{'Proformas validées' | traduction}}</th>
+                                <th style="text-align: right;">{{'Proformas' | traduction}}</th>
+                                <th style="text-align: right;">{{'Objectif' | traduction}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let commercial of meilleursCommerciaux">
+                                <td>{{annee}}</td>
+                                <td>{{commercial.noms}} {{commercial.prenoms}}</td>
+                                <td style="text-align: right;">{{getProformasValidees(commercial) | nombre}}</td>
+                                <td style="text-align: right;">{{getProformas(commercial) + getProformasValidees(commercial) | nombre}}</td>
+                                <td style="text-align: right;">{{getObjectif(commercial) | nombre}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-body" style="height: 480px; text-align: center; overflow: hidden;">
+                    <app-display-radial-chart [annee]="annee" [recouvrements]="recouvrements" [proformas]="proformas"></app-display-radial-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="utilisateur && utilisateur?.profil === 'COMMERCIAL'" class="container-fluid" style="margin-top: 16px;">
+    <app-dashboard-commercial [id]="utilisateur.commercial!.id"></app-dashboard-commercial>
+</div>
+<div style="height: 20vh;">
+
+</div>

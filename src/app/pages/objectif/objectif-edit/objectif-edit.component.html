@@ -1,0 +1,79 @@
+<div class="container-fluid" style="margin-top: 16px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>{{'Accueil' | traduction}}</a></li>
+            <li class="breadcrumb-item"><a class="text-primary" [routerLink]="'/objectif'">{{'Objectifs' |
+                    traduction}}</a></li>
+            <li class="breadcrumb-item active" *ngIf="isNewObjectif">{{'Nouveau' | traduction}}</li>
+
+            <li class="breadcrumb-item active" *ngIf="!isNewObjectif">
+                <a class="text-primary" [routerLink]="'/objectif/view/' + objectif.id">
+                    {{objectif.commercial.noms}} {{objectif.commercial.prenoms}}
+                </a>
+            </li>
+
+            <li class="breadcrumb-item active" *ngIf="!isNewObjectif">{{'Editer' | traduction}}</li>
+        </ol>
+    </nav>
+
+    <h1 *ngIf="!isNewObjectif" class="titre">
+        <button style="float: right;" (click)="delete()" class="btn btn-danger btn-error">
+            {{'Supprimer' | traduction}}
+        </button> {{'Modifier' | traduction}} l'objectif de {{objectif.commercial.noms}} {{objectif.commercial.prenoms}} pour l'année {{objectif.annee}}
+    </h1>
+    <h1 *ngIf="isNewObjectif" class="titre">{{'Ajouter un objectif' | traduction}}</h1>
+
+    <div class="first-step">
+        <p>
+            {{'Informations' | traduction}}
+        </p>
+        <div class=" page-contenu ">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Commercial" | traduction}}</span>
+                        <select [(ngModel)]="objectif.commercial" type="date" class="form-control">
+                            <option [ngValue]="commercial" *ngFor="let commercial of commercials">
+                                {{commercial.noms}}
+                                {{commercial.prenoms}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Année" | traduction}}</span>
+                        <input type="number" [(ngModel)]="objectif.annee" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Date début" | traduction}}</span>
+                        <input type="date" [ngModel]="objectif.dateDebut | date:'yyyy-MM-dd'" (ngModelChange)="objectif.dateDebut = $event" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Date fin" | traduction}}</span>
+                        <input type="date" [ngModel]="objectif.dateFin | date:'yyyy-MM-dd'" (ngModelChange)="objectif.dateFin = $event" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Montant" | traduction}}</span>
+                        <input [(ngModel)]="objectif.montant" type="number" class="form-control">
+                        <button class="btn btn-primary">
+                            XAF
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button (click)="save()" class="btn btn-primary">
+                    {{'Enregistrer' | traduction}}
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>

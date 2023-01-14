@@ -1,0 +1,102 @@
+<div class="container-fluid" style="margin-top: 16px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>{{'Accueil' | traduction}}</a></li>
+            <li class="breadcrumb-item"><a class="text-primary" [routerLink]="'/commercial'">{{'Commercials' |
+                    traduction}}</a></li>
+            <li class="breadcrumb-item active" *ngIf="isNewCommercial">{{'Nouveau' | traduction}}</li>
+
+            <li class="breadcrumb-item active" *ngIf="!isNewCommercial">
+                <a class="text-primary" [routerLink]="'/commercial/view/' + commercial.id">
+                    {{commercial.noms}} {{commercial.prenoms}}
+                </a>
+            </li>
+
+            <li class="breadcrumb-item active" *ngIf="!isNewCommercial">{{'Editer' | traduction}}</li>
+        </ol>
+    </nav>
+
+    <h1 *ngIf="!isNewCommercial" class="titre">
+        <button style="float: right;" (click)="delete()" class="btn btn-danger btn-error">
+            {{'Supprimer' | traduction}}
+        </button> {{'Modifier : ' | traduction}} {{commercial.noms}} {{commercial.prenoms}}
+    </h1>
+    <h1 *ngIf="isNewCommercial" class="titre">{{'Ajouter un commercial' | traduction}}</h1>
+
+    <div class="first-step">
+        <p>
+            {{'Informations personnelles' | traduction}}
+        </p>
+        <div class=" page-contenu ">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Code" | traduction}}</span>
+                        <input [(ngModel)]="commercial.code" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Noms" | traduction}}</span>
+                        <input [(ngModel)]="commercial.noms" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Prénoms" | traduction}}</span>
+                        <input [(ngModel)]="commercial.prenoms" type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button (click)="save()" class="btn btn-primary">
+                    {{'Enregistrer' | traduction}}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="first-step mt-4">
+        <p>
+            {{'Authentification' | traduction}}
+        </p>
+        <div class=" page-contenu ">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Login" | traduction}}</span>
+                        <input [readonly]="utilisateurs.length > 0" [(ngModel)]="login" type="text" class="form-control" [ngClass]="{'is-invalid': showErrors && !login}">
+                    </div>
+                </div>
+                <ng-container *ngIf="utilisateurs.length === 0">
+
+                    <div class="col-lg-4">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">{{"Premier mot de passe" | traduction}}</span>
+                            <input [(ngModel)]="passe" type="password" class="form-control" [ngClass]="{'is-invalid': showErrors && !passe}">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">{{"Confirmer mot de passe" | traduction}}</span>
+                            <input [(ngModel)]="confirmation" type="password" class="form-control" [ngClass]="{'is-invalid': showErrors && passe !== confirmation}">
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            <div>
+                <ng-container *ngIf="utilisateurs.length === 0">
+                    <button (click)="saveAuth()" class="btn btn-primary me-2">
+                        {{'Enregistrer' | traduction}}
+                    </button>
+                </ng-container>
+                <ng-container *ngIf="utilisateurs.length > 0">
+                    <button (click)="reinitPasse()" class="btn btn-danger">
+                        {{'Réinitialiser le mot de passe' | traduction}}
+                    </button>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+
+</div>

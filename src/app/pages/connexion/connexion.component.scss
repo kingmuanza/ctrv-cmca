@@ -1,0 +1,19 @@
+.gauche {
+    height: 100vh;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.moins100 {
+    margin-top: -100vh;
+}
+
+.logo {
+    padding-top: 15vh;
+}
+
+.arriere {
+    background-image: url('../../../assets/img/immeuble.jpg');
+    background-size: cover;
+    background-position: center center;
+}

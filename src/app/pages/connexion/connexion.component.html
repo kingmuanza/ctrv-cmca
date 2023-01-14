@@ -1,0 +1,59 @@
+<div class="row gx-0">
+    <div class="col-lg-5 pe-4 pr-4">
+        <div class="gauche arriere shadow-lg">
+
+        </div>
+        <div class="gauche filter moins100 text-bg-primary shadow-lg" style="opacity: 0.98;">
+
+        </div>
+    </div>
+    <div class="col-lg-7 text-center p-4">
+
+        <div class="logo mt-4">
+            <img style="width: 400px; margin: auto;" src="../../../assets/img/logo.jpg" alt="">
+        </div>
+
+        <div style="width: 500px; margin: auto;">
+            <div style="padding: 40px;">
+                <h1>
+                    {{'Connexion' | traduction}}
+                </h1>
+
+                <div class="mb-4">
+                    {{"Veuillez vous connecter pour accéder à l'application" | traduction}}
+                </div>
+
+                <div *ngIf="error === 'NOUSER'" class="mb-4 text-danger">
+                    {{'Aucun utilisateur trouvé' | traduction}}
+                </div>
+
+                <div *ngIf="error === 'INCORRECT'" class="mb-4 text-danger">
+                    {{'Mot de passe inccorect' | traduction}}
+                </div>
+
+                <div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Login" | traduction}}</span>
+                                <input [(ngModel)]="login" type="text" class="form-control" [ngClass]="{'is-invalid': error && error === 'NOUSER'}">
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Mot de passe" | traduction}}</span>
+                                <input [(ngModel)]="passe" type="password" class="form-control" [ngClass]="{'is-invalid': error && error === 'INCORRECT'}">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button (click)="connexion()" class="btn btn-primary" style="width: 100%;">
+                            {{'Connexion' | traduction}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

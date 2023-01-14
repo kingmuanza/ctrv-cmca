@@ -1,0 +1,40 @@
+<div class="container-fluid" style="margin-top: 16px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>{{'Accueil' | traduction}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{'Objectifs' | traduction}}</li>
+        </ol>
+    </nav>
+    <h1>{{'Objectifs' | traduction}}</h1>
+    <p>
+        {{'Tous les ojectifs annuels des commerciaux' | traduction}}
+    </p>
+
+    <div class=" page-contenu ">
+        <div class="">
+            <div class="">
+                <table datatable [dtOptions]="dtOptions " [dtTrigger]="dtTrigger " class="row-border hover ">
+                    <thead>
+                        <tr>
+                            <th>{{"Année" | traduction}}</th>
+                            <th>{{"Commercial" | traduction}}</th>
+                            <th>{{'Date début' | traduction}}</th>
+                            <th>{{'Date fin' | traduction}}</th>
+                            <th style="text-align: right;">{{'Montant' | traduction}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let objectif of objectifs" (click)="edit(objectif)">
+                            <td>{{objectif.annee}}</td>
+                            <td>{{objectif.commercial.noms}} {{objectif.commercial.prenoms}}</td>
+                            <td>{{objectif.dateDebut | date: 'yyyy-MM-dd'}}</td>
+                            <td>{{objectif.dateFin | date: 'yyyy-MM-dd'}}</td>
+                            <td style="text-align: right;">{{objectif.montant | nombre}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

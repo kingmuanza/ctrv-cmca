@@ -1,0 +1,45 @@
+<div class="container-fluid" style="margin-top: 16px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>{{'Accueil' | traduction}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{'Proformas Validation' | traduction}}</li>
+        </ol>
+    </nav>
+    <h1>{{'Proformas Validation' | traduction}}</h1>
+    <p>
+        {{'Retrouvez ici toutes les proformas dont vous avez accès' | traduction}}
+    </p>
+
+    <div class=" page-contenu ">
+        <div class="">
+            <div class="">
+                <table datatable [dtOptions]="dtOptions " [dtTrigger]="dtTrigger " class="row-border hover ">
+                    <thead>
+                        <tr>
+                            <th>{{'Date' | traduction}}</th>
+                            <th>{{'ID' | traduction}}</th>
+                            <th>{{"Commercial" | traduction}}</th>
+                            <th>{{'Client' | traduction}}</th>
+                            <th style="text-align: right;">{{'Montant' | traduction}}</th>
+                            <th style="text-align: center;">{{'Validée' | traduction}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let proforma of proformas" (click)="edit(proforma)">
+                            <td>{{proforma.date | date: 'yyyy-MM-dd'}}</td>
+                            <td>{{proforma.id}}</td>
+                            <td>{{proforma.commercial.noms}} {{proforma.commercial.prenoms}}</td>
+                            <td>{{proforma.client.nom}}</td>
+                            <td style="text-align: right;">{{proforma.montant | nombre}}</td>
+                            <td style="text-align: center;">
+                                <input *ngIf="!proforma.validee" type="checkbox">
+                                <input *ngIf="proforma.validee" type="checkbox" checked="checked">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

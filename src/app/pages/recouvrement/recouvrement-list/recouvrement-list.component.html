@@ -1,0 +1,42 @@
+<div class="container-fluid" style="margin-top: 16px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>{{'Accueil' | traduction}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{'Recouvrements' | traduction}}</li>
+        </ol>
+    </nav>
+    <h1>{{'Recouvrements' | traduction}}</h1>
+    <p>
+        {{'Retrouvez ici toutes les recouvrements dont vous avez accès' | traduction}}
+    </p>
+
+    <div class=" page-contenu ">
+        <div class="">
+            <div class="">
+                <table datatable [dtOptions]="dtOptions " [dtTrigger]="dtTrigger " class="row-border hover ">
+                    <thead>
+                        <tr>
+                            <th>{{'Date' | traduction}}</th>
+                            <th>{{"Proforma" | traduction}}</th>
+                            <th>{{"Commercial" | traduction}}</th>
+                            <th>{{"Client" | traduction}}</th>
+                            <th style="text-align: right;">{{'Montant Proforma' | traduction}}</th>
+                            <th style="text-align: center;">{{'Montant recouvré' | traduction}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let recouvrement of recouvrements" (click)="edit(recouvrement)">
+                            <td>{{recouvrement.date | date: 'yyyy-MM-dd'}}</td>
+                            <td>{{recouvrement.proforma.id}}</td>
+                            <td>{{recouvrement.proforma.commercial.noms}} {{recouvrement.proforma.commercial.prenoms}}</td>
+                            <td>{{recouvrement.proforma.client.nom}}</td>
+                            <td style="text-align: right;">{{recouvrement.proforma.montantValidee | nombre}}</td>
+                            <td style="text-align: right;">{{recouvrement.montant | nombre}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

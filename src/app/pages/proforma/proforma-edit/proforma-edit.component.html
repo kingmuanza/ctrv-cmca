@@ -1,0 +1,107 @@
+<div class="container-fluid" style="margin-top: 16px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>{{'Accueil' | traduction}}</a></li>
+            <li class="breadcrumb-item"><a class="text-primary" [routerLink]="'/proforma'">{{'Proformas' |
+                    traduction}}</a></li>
+            <li class="breadcrumb-item active" *ngIf="isNewProforma">{{'Nouveau' | traduction}}</li>
+
+            <li class="breadcrumb-item active" *ngIf="!isNewProforma">
+                <a class="text-primary" [routerLink]="'/proforma/view/' + proforma.id">
+                    Proforma {{proforma.id}} de {{proforma.commercial.noms}} {{proforma.commercial.prenoms}}
+                </a>
+            </li>
+
+            <li class="breadcrumb-item active" *ngIf="!isNewProforma">{{'Editer' | traduction}}</li>
+        </ol>
+    </nav>
+
+    <h1 *ngIf="!isNewProforma" class="titre">
+        <button style="float: right;" (click)="delete()" class="btn btn-danger btn-error">
+            {{'Supprimer' | traduction}}
+        </button> {{'Modifier' | traduction}} Proforma : {{proforma.id}} de {{proforma.commercial.noms}} {{proforma.commercial.prenoms}}
+    </h1>
+    <h1 *ngIf="isNewProforma" class="titre">{{'Ajouter une proforma' | traduction}}</h1>
+
+    <div class="first-step">
+        <p>
+            {{'Informations' | traduction}}
+        </p>
+        <div class=" page-contenu ">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Commercial" | traduction}}</span>
+                                <select [(ngModel)]="proforma.commercial" type="date" class="form-control">
+                                    <option [ngValue]="commercial" *ngFor="let commercial of commercials">
+                                        {{commercial.noms}}
+                                        {{commercial.prenoms}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Date début" | traduction}}</span>
+                                <input type="date" [ngModel]="proforma.date | date:'yyyy-MM-dd'" (ngModelChange)="proforma.date = $event" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Client" | traduction}}</span>
+                                <select [(ngModel)]="proforma.client" type="date" class="form-control">
+                                    <option [ngValue]="c" *ngFor="let c of clients">
+                                        {{c.nom}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Montant" | traduction}}</span>
+                                <input [(ngModel)]="proforma.montant" type="number" class="form-control">
+                                <button class="btn btn-primary">
+                                    XAF
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Pièces justificatives" | traduction}}</span>
+                                <input (change)="uploadFile($event)" multiple accept="image/jpeg" type="file" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <ng-container *ngIf="proforma.images">
+                            <ng-container *ngIf="proforma.images.length > 0">
+                                <div class="image-container me-2" *ngFor="let image of proforma.images; let i = index">
+                                    <div>
+                                        <img [src]="image" class=" mr-2 me-2" style="height: 300px;">
+                                    </div>
+                                    <div>
+                                        <button (click)="supprimerImage(image)" class="btn btn-danger" style="width: 100%;">
+                                            Supprimer
+                                        </button>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="images.length > 0">
+                            <img *ngFor="let image of images" [src]="image" class=" mr-2 me-2" style="height: 300px;">
+                        </ng-container>
+                    </div>
+
+                    <div class="mt-3">
+                        <button (click)="save()" class="btn btn-primary">{{'Enregistrer' | traduction}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

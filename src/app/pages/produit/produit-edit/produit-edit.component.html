@@ -1,0 +1,53 @@
+<div class="container-fluid" style="margin-top: 16px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>{{'Accueil' | traduction}}</a></li>
+            <li class="breadcrumb-item"><a class="text-primary" [routerLink]="'/produit'">{{'Produits' | traduction}}</a></li>
+            <li class="breadcrumb-item active" *ngIf="isNewProduit">{{'Nouveau' | traduction}}</li>
+
+            <li class="breadcrumb-item active" *ngIf="!isNewProduit"><a class="text-primary" [routerLink]="'/produit/view/' + produit.id">{{produit.nom}}</a></li>
+            <li class="breadcrumb-item active" *ngIf="!isNewProduit">{{'Editer' | traduction}}</li>
+        </ol>
+    </nav>
+
+    <h1 *ngIf="!isNewProduit" class="titre">
+        <button style="float: right;" (click)="delete()" class="btn btn-danger btn-error">
+            {{'Supprimer' | traduction}}
+        </button> {{'Modifier : ' | traduction}} {{produit.nom}}
+    </h1>
+    <h1 *ngIf="isNewProduit" class="titre">{{'Ajouter un produit' | traduction}}</h1>
+
+    <div class="first-step">
+        <p>
+            {{'Informations' | traduction}}
+        </p>
+        <div class=" page-contenu ">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Code" | traduction}}</span>
+                        <input [(ngModel)]="produit.code" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Nom" | traduction}}</span>
+                        <input [(ngModel)]="produit.nom" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Price" | traduction}}</span>
+                        <input [(ngModel)]="produit.prix" type="number" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button (click)="save()" class="btn btn-primary">
+                    {{'Enregistrer' | traduction}}
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>

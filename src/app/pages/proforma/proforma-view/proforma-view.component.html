@@ -1,0 +1,82 @@
+<div *ngIf="!isNewProforma" class="container-fluid" style="margin-top: 16px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>{{'Accueil' | traduction}}</a></li>
+            <li class="breadcrumb-item"><a class="text-primary" [routerLink]="'/proforma'">{{'Proformas' |
+                    traduction}}</a></li>
+            <li class="breadcrumb-item active" *ngIf="isNewProforma">{{'Nouveau' | traduction}}</li>
+
+            <li class="breadcrumb-item active" *ngIf="!isNewProforma">
+                Proforma : {{proforma.id}} de {{proforma.commercial.noms}} {{proforma.commercial.prenoms}}
+            </li>
+        </ol>
+    </nav>
+
+    <a class="text-primary" *ngIf="!proforma.validee" [routerLink]="'/proforma/edit/' + proforma.id" style="float: right;">{{'Modifier' |
+        traduction}}</a>
+    <h1 class="titre">
+        Proforma : {{proforma.id}} de {{proforma.commercial.noms}} {{proforma.commercial.prenoms}}
+    </h1>
+    <div *ngIf="proforma.validee">
+        <input type="checkbox" checked="checked"> &nbsp;Validé
+    </div>
+
+    <div class="first-step">
+        <div class=" page-contenu mt-3">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Commercial" | traduction}}</span>
+                        <input [value]="proforma.commercial.noms + ' ' + proforma.commercial.prenoms" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Date début" | traduction}}</span>
+                        <input type="date" [ngModel]="proforma.date | date:'yyyy-MM-dd'" (ngModelChange)="proforma.date = $event" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Client" | traduction}}</span>
+                        <input [value]="proforma.client.nom" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Montant" | traduction}}</span>
+                        <input [value]="proforma.montant | nombre" class="form-control">
+                        <button class="btn btn-primary">
+                            XAF
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" *ngIf="proforma.validee">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Date validation " | traduction}}</span>
+                        <input type="date" [ngModel]="proforma.dateValidation | date:'yyyy-MM-dd'" (ngModelChange)="proforma.dateValidation = $event" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-4" *ngIf="proforma.validee">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Montant Validé" | traduction}}</span>
+                        <input [(ngModel)]="proforma.montantValidee" type="number" class="form-control">
+                        <button class="btn btn-primary">
+                            XAF
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="proforma.images">
+        <div *ngIf="proforma.images.length > 0">
+            <ng-container *ngFor="let image of proforma.images">
+                <img [src]="image" class="img-thumbnail mr-2 me-2" style="height: 400px;">
+            </ng-container>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,61 @@
+<div class="container-fluid" style="margin-top: 16px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>{{'Accueil' | traduction}}</a></li>
+            <li class="breadcrumb-item"><a class="text-primary" [routerLink]="'/objectif'">{{'Objectifs' |
+                    traduction}}</a></li>
+            <li class="breadcrumb-item active" *ngIf="isNewObjectif">{{'Nouveau' | traduction}}</li>
+
+            <li class="breadcrumb-item active" *ngIf="!isNewObjectif">
+                Objectif de {{objectif.commercial.noms}} {{objectif.commercial.prenoms}} pour l'année {{objectif.annee}}
+            </li>
+        </ol>
+    </nav>
+
+    <a class="text-primary" [routerLink]="'/objectif/edit/' + objectif.id" style="float: right;">{{'Modifier' |
+        traduction}}</a>
+    <h1 *ngIf="!isNewObjectif" class="titre">
+        Objectif de {{objectif.commercial.noms}} {{objectif.commercial.prenoms}} pour l'année {{objectif.annee}}
+    </h1>
+
+    <div class="first-step">
+        <div class=" page-contenu mt-3">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Commercial" | traduction}}</span>
+                        <input [value]="objectif.commercial.noms + ' ' + objectif.commercial.prenoms" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Année" | traduction}}</span>
+                        <input type="number" [(ngModel)]="objectif.annee" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Date début" | traduction}}</span>
+                        <input type="date" [ngModel]="objectif.dateDebut | date:'yyyy-MM-dd'" (ngModelChange)="objectif.dateDebut = $event" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Date fin" | traduction}}</span>
+                        <input type="date" [ngModel]="objectif.dateFin | date:'yyyy-MM-dd'" (ngModelChange)="objectif.dateFin = $event" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Montant" | traduction}}</span>
+                        <input [value]="objectif.montant | nombre" class="form-control">
+                        <button class="btn btn-primary">
+                            XAF
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

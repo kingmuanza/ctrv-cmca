@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+
+$bleu: #004A93;
+.text-bg-primary,
+.btn-primary {
+    background-color: $bleu !important;
+    color: white !important;
+    border-color: $bleu !important;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: bold;
+}
