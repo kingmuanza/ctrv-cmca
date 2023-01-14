@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
+import { Subscription } from 'rxjs';
 import { Client } from 'src/app/_models/client.model';
 import { Commercial } from 'src/app/_models/commercial.model';
 import { Proforma } from 'src/app/_models/proforma.model';
+import { Utilisateur } from 'src/app/_models/utilisateur.model';
 import { TraductionPipe } from 'src/app/_pipes/traduction.pipe';
+import { AuthService } from 'src/app/_services/auth.service';
 import { CrudService } from 'src/app/_services/crud.service';
 
 @Component({
@@ -14,6 +17,9 @@ import { CrudService } from 'src/app/_services/crud.service';
 })
 export class ProformavalideEditComponent implements OnInit {
 
+  utilisateur: Utilisateur | undefined;
+  utilisateurSubscription!: Subscription;
+
   proforma = new Proforma();
   isNewProforma = true;
   commercials = new Array<Commercial>();
@@ -22,6 +28,7 @@ export class ProformavalideEditComponent implements OnInit {
   constructor(
     private traductionPipe: TraductionPipe,
     private router: Router,
+    private authservice: AuthService,
     private notifierService: NotifierService,
     private route: ActivatedRoute,
     private commercialService: CrudService<Commercial>,
@@ -31,6 +38,12 @@ export class ProformavalideEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
+    this.utilisateurSubscription = this.authservice.userSubject.subscribe((utilisateur) => {
+      this.utilisateur = utilisateur;      
+    });
+    this.authservice.emit();
+
     this.commercialService.getAll('commercial').then((data) => {
       this.commercials = data.filter((d) => {
         return true;
@@ -61,17 +74,18 @@ export class ProformavalideEditComponent implements OnInit {
   save() {
     console.log('saving');
     this.proforma.validee = Proforma.VALIDEE;
+    this.proforma.validateur = this.utilisateur;
     if (this.isNewProforma) {
       console.log('nouveau');
       console.log(this.proforma);
       this.proformaService.create('proforma', this.proforma).then((id) => {
         this.notifierService.notify('success', "saved successfully");
-        this.router.navigate(['proforma', 'view', this.proforma.id]);
+        this.router.navigate(['proformavalide', 'view', this.proforma.id]);
       });
     } else {
       this.proformaService.modify('proforma', this.proforma.id, this.proforma).then(() => {
         this.notifierService.notify('success', "saved successfully");
-        this.router.navigate(['proforma', 'view', this.proforma.id]);
+        // window.location.reload();
       });
     }
   }
@@ -79,19 +93,30 @@ export class ProformavalideEditComponent implements OnInit {
   unsave() {
     console.log('saving');
     this.proforma.validee = Proforma.INVALIDEE;
+    this.proforma.validateur = this.utilisateur;
     if (this.isNewProforma) {
       console.log('nouveau');
       console.log(this.proforma);
       this.proformaService.create('proforma', this.proforma).then((id) => {
         this.notifierService.notify('success', "saved successfully");
-        this.router.navigate(['proforma', 'view', this.proforma.id]);
+        this.router.navigate(['proformavalide', 'view', this.proforma.id]);
       });
     } else {
       this.proformaService.modify('proforma', this.proforma.id, this.proforma).then(() => {
         this.notifierService.notify('success', "saved successfully");
-        this.router.navigate(['proforma', 'view', this.proforma.id]);
+        window.location.reload();
       });
     }
+  }
+
+  getNomValidateur(proforma: Proforma): string {
+    let nom = '';
+    if (proforma.validateur) {
+      if(proforma.validateur.assistant) {
+        nom = proforma.validateur.assistant.noms + ' ' + proforma.validateur.assistant.prenoms;
+      }
+    }
+    return nom;
   }
 
   delete() {

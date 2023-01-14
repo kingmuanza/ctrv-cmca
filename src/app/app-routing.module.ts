@@ -30,6 +30,9 @@ import { AssistantEditComponent } from './pages/assistant/assistant-edit/assista
 import { AssistantListComponent } from './pages/assistant/assistant-list/assistant-list.component';
 import { AssistantViewComponent } from './pages/assistant/assistant-view/assistant-view.component';
 import { MonprofilComponent } from './pages/monprofil/monprofil.component';
+import { ComptableEditComponent } from './pages/comptable/comptable-edit/comptable-edit.component';
+import { ComptableListComponent } from './pages/comptable/comptable-list/comptable-list.component';
+import { ComptableViewComponent } from './pages/comptable/comptable-view/comptable-view.component';
 
 const routes: Routes = [
 
@@ -56,6 +59,11 @@ const routes: Routes = [
   { path: 'commercial/edit', component: CommercialEditComponent},
   { path: 'commercial/edit/:id', component: CommercialEditComponent},
   { path: 'commercial/view/:id', component: CommercialViewComponent},
+
+  { path: 'comptable', component: ComptableListComponent},
+  { path: 'comptable/edit', component: ComptableEditComponent},
+  { path: 'comptable/edit/:id', component: ComptableEditComponent},
+  { path: 'comptable/view/:id', component: ComptableViewComponent},
 
   { path: 'objectif', component: ObjectifListComponent},
   { path: 'objectif/edit', component: ObjectifEditComponent},

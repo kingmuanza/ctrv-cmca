@@ -30,9 +30,9 @@
         <div class=" page-contenu ">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="input-group mb-3">
+                    <div *ngIf="isNewRecouvrement" class="input-group mb-3">
                         <span class="input-group-text">{{"Proforma" | traduction}}</span>
-                        <select [(ngModel)]="recouvrement.proforma" on (ngModelChange)="updateMontant($event)" type="date" class="form-control">
+                        <select [(ngModel)]="recouvrement.proforma" (ngModelChange)="updateMontant($event)" class="form-control">
                             <ng-container  *ngFor="let proforma of proformas">
                             <option [ngValue]="proforma" *ngIf="!proforma.statut">
                                 {{proforma.id}}
@@ -45,6 +45,13 @@
                             </option>
                             </ng-container>
                         </select>
+                    </div>
+                </div>
+                <div *ngIf="!isNewRecouvrement" class="col-lg-12">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Proforma" | traduction}}</span>
+
+                        <input readonly [value]="recouvrement.proforma.id + ' ' + recouvrement.proforma.client.nom + ' '  + (recouvrement.proforma.montantValidee | nombre) + ' ' + (recouvrement.proforma.date | date:'yyyy-MM-dd')" class="form-control">
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -63,7 +70,7 @@
                     </div>
                 </div>
             </div>
-            <div>
+            <div *ngIf="utilisateur && utilisateur.profil==='COMPTABLE'">
                 <button (click)="save()" class="btn btn-primary">
                     {{'Enregistrer' | traduction}}
                 </button>

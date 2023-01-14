@@ -19,9 +19,12 @@
     <h1 *ngIf="!isNewProforma" class="titre">
         {{'Valider ' | traduction}} Proforma : {{proforma.id}} de {{proforma.commercial.noms}} {{proforma.commercial.prenoms}}
     </h1>
-    <h1 *ngIf="isNewProforma" class="titre">{{'Ajouter un proforma' | traduction}}</h1>
+    <h1 *ngIf="isNewProforma" class="titre">{{'Valider une proforma' | traduction}}</h1>
+    <div *ngIf="proforma.validee">
+        <input type="checkbox" checked="checked"> &nbsp;Validé
+    </div>
 
-    <div class="first-step">
+    <div class="first-step mt-2">
         <p>
             {{'Informations' | traduction}}
         </p>
@@ -79,6 +82,12 @@
                 </div>
             </div>
             <div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">{{"Validation mise à jour par" | traduction}}</span>
+                    <input disabled [value]="getNomValidateur(proforma)" class="form-control">
+                </div>
+            </div>
+            <div *ngIf="utilisateur && utilisateur.profil==='ASSISTANT'">
                 <button *ngIf="!proforma.validee" (click)="save()" class="btn btn-primary">
                     {{'Valider la proforma' | traduction}}
                 </button>

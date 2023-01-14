@@ -49,6 +49,9 @@ import { DisplayRadialChartComponent } from './_components/display-radial-chart/
 import { DisplayDoughnutChartComponent } from './_components/display-doughnut-chart/display-doughnut-chart.component';
 import { DashboardCommercialComponent } from './_components/dashboard-commercial/dashboard-commercial.component';
 import { DashboardAssistantComponent } from './_components/dashboard-assistant/dashboard-assistant.component';
+import { ComptableListComponent } from './pages/comptable/comptable-list/comptable-list.component';
+import { ComptableEditComponent } from './pages/comptable/comptable-edit/comptable-edit.component';
+import { ComptableViewComponent } from './pages/comptable/comptable-view/comptable-view.component';
 
 registerLocaleData(localeFr);
 
@@ -94,6 +97,9 @@ registerLocaleData(localeFr);
     DisplayDoughnutChartComponent,
     DashboardCommercialComponent,
     DashboardAssistantComponent,
+    ComptableListComponent,
+    ComptableEditComponent,
+    ComptableViewComponent,
   ],
   imports: [
     BrowserModule,

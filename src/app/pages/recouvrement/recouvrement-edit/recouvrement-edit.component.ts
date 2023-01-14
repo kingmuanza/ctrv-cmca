@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
+import { Subscription } from 'rxjs';
 import { Client } from 'src/app/_models/client.model';
 import { Proforma } from 'src/app/_models/proforma.model';
 import { Recouvrement } from 'src/app/_models/recouvrement.model';
+import { Utilisateur } from 'src/app/_models/utilisateur.model';
 import { TraductionPipe } from 'src/app/_pipes/traduction.pipe';
+import { AuthService } from 'src/app/_services/auth.service';
 import { CrudService } from 'src/app/_services/crud.service';
 
 @Component({
@@ -13,6 +16,9 @@ import { CrudService } from 'src/app/_services/crud.service';
   styleUrls: ['./recouvrement-edit.component.scss']
 })
 export class RecouvrementEditComponent implements OnInit {
+
+  utilisateur: Utilisateur | undefined;
+  utilisateurSubscription!: Subscription;
 
   recouvrement = new Recouvrement();
   recouvrements = new Array<Recouvrement>();
@@ -25,6 +31,7 @@ export class RecouvrementEditComponent implements OnInit {
   constructor(
     private traductionPipe: TraductionPipe,
     private router: Router,
+    private authservice: AuthService,
     private notifierService: NotifierService,
     private route: ActivatedRoute,
     private proformaService: CrudService<Proforma>,
@@ -34,13 +41,19 @@ export class RecouvrementEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.utilisateurSubscription = this.authservice.userSubject.subscribe((utilisateur) => {
+      this.utilisateur = utilisateur;
+    });
+    this.authservice.emit();
+
     this.recouvrementService.getAll('recouvrement').then((data) => {
       this.recouvrements = data.filter((d) => {
         return true;
       });
     });
-    this.proformaService.getAll('proforma').then((data) => {
-      this.proformas = data.filter((d) => {
+
+    this.proformaService.getAll('proforma').then((proformas) => {
+      this.proformas = proformas.filter((d) => {
         return d.validee;
       });
       this.clientService.getAll('client').then((data) => {
@@ -55,7 +68,7 @@ export class RecouvrementEditComponent implements OnInit {
             this.recouvrement = data;
             this.isNewRecouvrement = false;
 
-            this.proformas.forEach(element => {
+            proformas.forEach(element => {
               if (this.recouvrement.proforma && element.id === this.recouvrement.proforma.id) {
                 this.recouvrement.proforma = element;
               }
@@ -66,8 +79,14 @@ export class RecouvrementEditComponent implements OnInit {
     });
   }
 
+  getLibelle(recouvrement: Recouvrement) {
+    // return 'Mua nz';
+    return recouvrement.proforma.id + ' ' + recouvrement.proforma.client.nom + ' ' + (recouvrement.proforma.montantValidee) + ' ' + (recouvrement.proforma.date)
+  }
+
   save() {
     console.log('saving');
+    this.recouvrement.validateur = this.utilisateur;
     if (this.recouvrement.montant <= this.montantRestant) {
       if (this.isNewRecouvrement) {
         console.log('nouveau');
@@ -111,8 +130,12 @@ export class RecouvrementEditComponent implements OnInit {
     const phrase = this.traductionPipe.transform('Etes-vous sûr de vouloir supprimer cet élément ?');
     const oui = confirm(phrase);
     if (oui) {
-      this.recouvrementService.delete('recouvrement', this.recouvrement.id).then(() => {
-        this.router.navigate(['recouvrement']);
+      this.recouvrement.proforma.statut = Proforma.IMPAYEE;
+      this.proformaService.modify('proforma', this.recouvrement.proforma.id, this.recouvrement.proforma).then(() => {
+        this.notifierService.notify('success', "Proforma update");
+        this.recouvrementService.delete('recouvrement', this.recouvrement.id).then(() => {
+          this.router.navigate(['recouvrement']);
+        });
       });
     }
   }

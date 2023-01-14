@@ -1,6 +1,7 @@
 import { Client } from "./client.model";
 import { Commercial } from "./commercial.model";
 import { Produit } from "./produit.model";
+import { Utilisateur } from "./utilisateur.model";
 
 export class Proforma {
 
@@ -22,6 +23,7 @@ export class Proforma {
     statut = 0;
     validee = 0;
     images: string[] = [];
+    validateur: Utilisateur | undefined; 
 
     constructor() {
         this.statut = Proforma.IMPAYEE;
