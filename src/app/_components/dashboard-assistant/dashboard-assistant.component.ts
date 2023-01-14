@@ -3,15 +3,15 @@ import { Router } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 import { DatatablesOptions } from 'src/app/_data/datatable.option';
-import { Assistant } from 'src/app/_models/assistant.model';
+import { Proforma } from 'src/app/_models/proforma.model';
 import { CrudService } from 'src/app/_services/crud.service';
 
 @Component({
-  selector: 'app-assistant-list',
-  templateUrl: './assistant-list.component.html',
-  styleUrls: ['./assistant-list.component.scss']
+  selector: 'app-dashboard-assistant',
+  templateUrl: './dashboard-assistant.component.html',
+  styleUrls: ['./dashboard-assistant.component.scss']
 })
-export class AssistantListComponent implements OnInit {
+export class DashboardAssistantComponent implements OnInit {
 
   // Datatables
   dtOptions: any = DatatablesOptions;
@@ -19,11 +19,12 @@ export class AssistantListComponent implements OnInit {
   @ViewChild(DataTableDirective) dtElement!: DataTableDirective;
   dtInstance!: Promise<DataTables.Api>;
 
-  assistants = new Array<Assistant>();
+  proformas = new Array<Proforma>();
+  annee = new Date().getFullYear();
 
   constructor(
     private router: Router,
-    private assistantService: CrudService<Assistant>,
+    private proformaService: CrudService<Proforma>,
   ) {    
     
   }
@@ -43,24 +44,36 @@ export class AssistantListComponent implements OnInit {
     return dtOptions;
   }
 
-  edit(assistant?:Assistant) {
-    if (assistant) {
-      this.router.navigate(['assistant', 'view', assistant.id]);
+  edit(proforma?:Proforma) {
+    if (proforma) {
+      this.router.navigate(['proformavalide', 'edit', proforma.id]);
     } else {
-      this.router.navigate(['assistant', 'edit']);
+      this.router.navigate(['proformavalide', 'edit']);
     }
   }
 
   ngOnInit(): void {
     this.dtOptions = this.initNouveau();
-    this.assistantService.getAll('assistant').then((data) => {
-      this.assistants = data.filter((d) => {
-        return true;
+    this.proformaService.getAll('proforma').then((data) => {
+      this.proformas = data.filter((d) => {
+        return new Date(d.date).getFullYear() == this.annee;
       });
       this.dtTrigger.next('');
     });
     setTimeout(() => {
     }, 1000);
+  }
+
+  refreshAll() {    
+    this.proformaService.getAll('proforma').then((data) => {
+      this.proformas = data.filter((d) => {
+        return new Date(d.date).getFullYear() == this.annee;
+      });
+      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        dtInstance.destroy();
+        this.dtTrigger.next('');
+      });
+    });
   }
 
   ngOnDestroy(): void {

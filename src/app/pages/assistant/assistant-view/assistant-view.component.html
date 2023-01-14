@@ -1,1 +1,50 @@
-<p>assistant-view works!</p>
+<div class="container-fluid" style="margin-top: 16px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>{{'Accueil' | traduction}}</a></li>
+            <li class="breadcrumb-item"><a class="text-primary" [routerLink]="'/assistant'">{{'Assistants' | traduction}}</a></li>
+            <li class="breadcrumb-item active" *ngIf="isNewAssistant">{{'Nouveau' | traduction}}</li>
+
+            <li class="breadcrumb-item active" *ngIf="!isNewAssistant">
+                {{assistant.noms}} {{assistant.prenoms}}
+            </li>
+        </ol>
+    </nav>
+
+    <a class="text-primary" [routerLink]="'/assistant/edit/' + assistant.id" style="float: right;">{{'Modifier' | traduction}}</a>
+    <h1 *ngIf="!isNewAssistant" class="titre">
+        {{assistant.noms}} {{assistant.prenoms}}
+    </h1>
+
+    <div class="first-step">
+
+        <div class=" page-contenu mt-3">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <p>
+                                    {{'Informations' | traduction}}
+                                </p>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Code" | traduction}}</span>
+                                <input [(ngModel)]="assistant.code" type="text" class="form-control">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Noms" | traduction}}</span>
+                                <input [(ngModel)]="assistant.noms" type="text" class="form-control">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Prénoms" | traduction}}</span>
+                                <input [(ngModel)]="assistant.prenoms" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

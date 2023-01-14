@@ -78,6 +78,14 @@ export class MenuGaucheComponent implements OnInit, OnChanges {
           this.access.proformaValidation = false;
           this.access.recouvrements = false;
         }
+        if (utilisateur.profil === 'ASSISTANT') {
+          this.access.commerciaux = false;
+          this.access.assistants = false;
+          this.access.objectifsCommerciaux = false;
+          this.access.objectifsAnnuels = false;
+          this.access.recouvrements = false;
+          this.access.proforma = false;
+        }
       } else {
         this.setNoAcess();
       }

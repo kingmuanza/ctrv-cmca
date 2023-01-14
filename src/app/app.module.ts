@@ -48,6 +48,7 @@ import { DisplayStatsComponent } from './_components/display-stats/display-stats
 import { DisplayRadialChartComponent } from './_components/display-radial-chart/display-radial-chart.component';
 import { DisplayDoughnutChartComponent } from './_components/display-doughnut-chart/display-doughnut-chart.component';
 import { DashboardCommercialComponent } from './_components/dashboard-commercial/dashboard-commercial.component';
+import { DashboardAssistantComponent } from './_components/dashboard-assistant/dashboard-assistant.component';
 
 registerLocaleData(localeFr);
 
@@ -92,6 +93,7 @@ registerLocaleData(localeFr);
     DisplayRadialChartComponent,
     DisplayDoughnutChartComponent,
     DashboardCommercialComponent,
+    DashboardAssistantComponent,
   ],
   imports: [
     BrowserModule,

@@ -84,6 +84,9 @@
 <div *ngIf="utilisateur && utilisateur?.profil === 'COMMERCIAL'" class="container-fluid" style="margin-top: 16px;">
     <app-dashboard-commercial [id]="utilisateur.commercial!.id"></app-dashboard-commercial>
 </div>
+<div *ngIf="utilisateur && utilisateur?.profil === 'ASSISTANT'" class="container-fluid" style="margin-top: 16px;">
+    <app-dashboard-assistant [id]="utilisateur.assistant!.id"></app-dashboard-assistant>
+</div>
 <div style="height: 20vh;">
 
 </div>
