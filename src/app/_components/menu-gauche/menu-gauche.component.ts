@@ -20,6 +20,8 @@ export class MenuGaucheComponent implements OnInit, OnChanges {
     accueil: true,
     produits: true,
     commerciaux: true,
+    departements: true,
+    comptables: true,
     assistants: true,
     objectifsCommerciaux: true,
     objectifsAnnuels: true,
@@ -48,6 +50,8 @@ export class MenuGaucheComponent implements OnInit, OnChanges {
       produits: true,
       commerciaux: true,
       assistants: true,
+      departements: true,
+      comptables: true,
       objectifsCommerciaux: true,
       objectifsAnnuels: true,
       clients: true,
@@ -77,6 +81,8 @@ export class MenuGaucheComponent implements OnInit, OnChanges {
           this.access.objectifsAnnuels = false;
           this.access.proformaValidation = false;
           this.access.recouvrements = false;
+          this.access.departements = false;
+          this.access.comptables = false;
         }
         if (utilisateur.profil === 'ASSISTANT') {
           this.access.commerciaux = false;
@@ -85,6 +91,8 @@ export class MenuGaucheComponent implements OnInit, OnChanges {
           this.access.objectifsAnnuels = false;
           this.access.recouvrements = false;
           this.access.proforma = false;
+          this.access.departements = false;
+          this.access.comptables = false;
         }
         if (utilisateur.profil === 'COMPTABLE') {
           this.access.commerciaux = false;
@@ -92,6 +100,8 @@ export class MenuGaucheComponent implements OnInit, OnChanges {
           this.access.objectifsCommerciaux = false;
           this.access.objectifsAnnuels = false;
           this.access.proforma = false;
+          this.access.departements = false;
+          this.access.comptables = false;
         }
       } else {
         this.setNoAcess();
@@ -106,6 +116,8 @@ export class MenuGaucheComponent implements OnInit, OnChanges {
       accueil: false,
       produits: false,
       commerciaux: false,
+      departements: false,
+      comptables: false,
       assistants: false,
       objectifsCommerciaux: false,
       objectifsAnnuels: false,

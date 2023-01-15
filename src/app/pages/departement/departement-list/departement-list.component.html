@@ -1,1 +1,34 @@
-<p>departement-list works!</p>
+<div class="container-fluid" style="margin-top: 16px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>{{'Accueil' | traduction}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{'Départements' | traduction}}</li>
+        </ol>
+    </nav>
+    <h1>{{'Départements' | traduction}}</h1>
+    <p>
+        {{'Retrouvez tous vos départements ici' | traduction}}
+    </p>
+
+    <div class=" page-contenu ">
+        <div class="">
+            <div class="">
+                <table datatable [dtOptions]="dtOptions " [dtTrigger]="dtTrigger " class="row-border hover ">
+                    <thead>
+                        <tr>
+                            <th>{{"Code" | traduction}}</th>
+                            <th>{{'Nom' | traduction}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let departement of departements" (click)="edit(departement)">
+                            <td>{{departement.code}}</td>
+                            <td>{{departement.nom}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -32,8 +32,11 @@
             <li *ngIf="access.assistants" class="nav-item">
                 <a class="nav-link" routerLink="/assistant" routerLinkActive="active">{{'Assistants de vente' | traduction}}</a>
             </li>
-            <li *ngIf="access.assistants" class="nav-item">
+            <li *ngIf="access.comptables" class="nav-item">
                 <a class="nav-link" routerLink="/comptable" routerLinkActive="active">{{'Comptables' | traduction}}</a>
+            </li>
+            <li *ngIf="access.departements" class="nav-item">
+                <a class="nav-link" routerLink="/departement" routerLinkActive="active">{{'Départements' | traduction}}</a>
             </li>
             <li *ngIf="access.objectifsCommerciaux" class="nav-item">
                 <a class="nav-link" routerLink="/objectif" routerLinkActive="active">{{'Objectifs commerciaux' | traduction}}</a>

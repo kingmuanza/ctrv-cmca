@@ -33,6 +33,9 @@ import { MonprofilComponent } from './pages/monprofil/monprofil.component';
 import { ComptableEditComponent } from './pages/comptable/comptable-edit/comptable-edit.component';
 import { ComptableListComponent } from './pages/comptable/comptable-list/comptable-list.component';
 import { ComptableViewComponent } from './pages/comptable/comptable-view/comptable-view.component';
+import { DepartementEditComponent } from './pages/departement/departement-edit/departement-edit.component';
+import { DepartementListComponent } from './pages/departement/departement-list/departement-list.component';
+import { DepartementViewComponent } from './pages/departement/departement-view/departement-view.component';
 
 const routes: Routes = [
 
@@ -64,6 +67,11 @@ const routes: Routes = [
   { path: 'comptable/edit', component: ComptableEditComponent},
   { path: 'comptable/edit/:id', component: ComptableEditComponent},
   { path: 'comptable/view/:id', component: ComptableViewComponent},
+
+  { path: 'departement', component: DepartementListComponent},
+  { path: 'departement/edit', component: DepartementEditComponent},
+  { path: 'departement/edit/:id', component: DepartementEditComponent},
+  { path: 'departement/view/:id', component: DepartementViewComponent},
 
   { path: 'objectif', component: ObjectifListComponent},
   { path: 'objectif/edit', component: ObjectifEditComponent},
