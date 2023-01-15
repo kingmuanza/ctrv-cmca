@@ -1,0 +1,14 @@
+.supprimer {
+    color: red;
+    display: none;
+}
+
+.personne {
+    &:hover {
+        .supprimer {
+            color: red;
+            display: inline-block;
+            cursor: pointer;
+        }
+    }
+}

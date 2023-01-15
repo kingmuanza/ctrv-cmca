@@ -18,6 +18,8 @@
                         <tr>
                             <th>{{"Code" | traduction}}</th>
                             <th>{{'Nom' | traduction}}</th>
+                            <th>{{'Catégorie' | traduction}}</th>
+                            <th>{{'Secteur' | traduction}}</th>
                             <th>{{'Téléphone' | traduction}}</th>
                         </tr>
                     </thead>
@@ -25,6 +27,8 @@
                         <tr *ngFor="let client of clients" (click)="edit(client)">
                             <td>{{client.code}}</td>
                             <td>{{client.nom}}</td>
+                            <td>{{getLibelleCategorie(client.categorie)}}</td>
+                            <td>{{client.secteur}}</td>
                             <td>{{client.tel}}</td>
                         </tr>
                     </tbody>

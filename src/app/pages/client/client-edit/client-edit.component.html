@@ -47,6 +47,34 @@
                         <input [(ngModel)]="client.tel" type="text" class="form-control">
                     </div>
                 </div>
+                <div class="col-lg-6">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Téléphone" | traduction}}</span>
+                        <input [(ngModel)]="client.tel" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Email" | traduction}}</span>
+                        <input [(ngModel)]="client.email" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Categorie" | traduction}}</span>
+                        <select [(ngModel)]="client.categorie" class="form-control">
+                            <option value="ONG">ONG</option>
+                            <option value="Public">Entreprise publique</option>
+                            <option value="Privee">Entreprise privée</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Secteur" | traduction}}</span>
+                        <input [(ngModel)]="client.secteur" type="text" class="form-control">
+                    </div>
+                </div>
             </div>
             <div>
                 <button (click)="save()" class="btn btn-primary">

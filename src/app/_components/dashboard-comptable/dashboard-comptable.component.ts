@@ -3,15 +3,15 @@ import { Router } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 import { DatatablesOptions } from 'src/app/_data/datatable.option';
-import { Client } from 'src/app/_models/client.model';
+import { Recouvrement } from 'src/app/_models/recouvrement.model';
 import { CrudService } from 'src/app/_services/crud.service';
 
 @Component({
-  selector: 'app-client-list',
-  templateUrl: './client-list.component.html',
-  styleUrls: ['./client-list.component.scss']
+  selector: 'app-dashboard-comptable',
+  templateUrl: './dashboard-comptable.component.html',
+  styleUrls: ['./dashboard-comptable.component.scss']
 })
-export class ClientListComponent implements OnInit {
+export class DashboardComptableComponent implements OnInit {
 
   // Datatables
   dtOptions: any = DatatablesOptions;
@@ -19,11 +19,12 @@ export class ClientListComponent implements OnInit {
   @ViewChild(DataTableDirective) dtElement!: DataTableDirective;
   dtInstance!: Promise<DataTables.Api>;
 
-  clients = new Array<Client>();
+  recouvrements = new Array<Recouvrement>();
+  annee = new Date().getFullYear();
 
   constructor(
     private router: Router,
-    private clientService: CrudService<Client>,
+    private recouvrementService: CrudService<Recouvrement>,
   ) {    
     
   }
@@ -43,18 +44,18 @@ export class ClientListComponent implements OnInit {
     return dtOptions;
   }
 
-  edit(client?:Client) {
-    if (client) {
-      this.router.navigate(['client', 'view', client.id]);
+  edit(recouvrement?:Recouvrement) {
+    if (recouvrement) {
+      this.router.navigate(['recouvrement', 'edit', recouvrement.id]);
     } else {
-      this.router.navigate(['client', 'edit']);
+      this.router.navigate(['recouvrement', 'edit']);
     }
   }
 
   ngOnInit(): void {
     this.dtOptions = this.initNouveau();
-    this.clientService.getAll('client').then((data) => {
-      this.clients = data.filter((d) => {
+    this.recouvrementService.getAll('recouvrement').then((data) => {
+      this.recouvrements = data.filter((d) => {
         return true;
       });
       this.dtTrigger.next('');
@@ -63,14 +64,16 @@ export class ClientListComponent implements OnInit {
     }, 1000);
   }
 
-  getLibelleCategorie(categorie: string): string {
-    if (categorie === 'Privee') {
-      return "Entreprise privée"
-    }
-    if (categorie === 'Public') {
-      return "Entreprise publique"
-    }
-    return categorie;
+  refreshAll() {    
+    this.recouvrementService.getAll('proforma').then((data) => {
+      this.recouvrements = data.filter((d) => {
+        return new Date(d.date).getFullYear() == this.annee;
+      });
+      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        dtInstance.destroy();
+        this.dtTrigger.next('');
+      });
+    });
   }
 
   ngOnDestroy(): void {

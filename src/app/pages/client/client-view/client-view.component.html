@@ -63,15 +63,80 @@
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Code" | traduction}}</span>
-                                <input [(ngModel)]="client.code" type="text" class="form-control">
+                                <input readonly [(ngModel)]="client.code" type="text" class="form-control">
                             </div>
                             <div class="input-group mb-3">
-                                <span class="input-group-text">{{"Noms" | traduction}}</span>
-                                <input [(ngModel)]="client.nom" type="text" class="form-control">
+                                <span class="input-group-text">{{"Nom" | traduction}}</span>
+                                <input readonly [(ngModel)]="client.nom" type="text" class="form-control">
                             </div>
                             <div class="input-group mb-3">
-                                <span class="input-group-text">{{"Prénoms" | traduction}}</span>
-                                <input [(ngModel)]="client.tel" type="text" class="form-control">
+                                <span class="input-group-text">{{"Téléphone" | traduction}}</span>
+                                <input readonly [(ngModel)]="client.tel" type="text" class="form-control">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Email" | traduction}}</span>
+                                <input readonly [(ngModel)]="client.email" type="text" class="form-control">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Categorie" | traduction}}</span>
+                                <select [(ngModel)]="client.categorie" class="form-control">
+                                    <option value="ONG">ONG</option>
+                                    <option value="Public">Entreprise publique</option>
+                                    <option value="Privee">Entreprise privée</option>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Secteur" | traduction}}</span>
+                                <input readonly [(ngModel)]="client.secteur" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <p>
+                                    <a style="float: right;" class="btn btn-link" (click)="montrerFormulaire = true">Ajouter</a> {{'Personne à contacter' | traduction}}
+                                </p>
+                            </div>
+                            <div *ngIf="montrerFormulaire" class="mb-4">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">{{"Noms" | traduction}}</span>
+                                    <input [(ngModel)]="personne.noms" type="text" class="form-control">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">{{"Prénoms" | traduction}}</span>
+                                    <input [(ngModel)]="personne.prenoms" type="text" class="form-control">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">{{"Téléphone" | traduction}}</span>
+                                    <input [(ngModel)]="personne.tel" type="text" class="form-control">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">{{"Email" | traduction}}</span>
+                                    <input [(ngModel)]="personne.email" type="text" class="form-control">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">{{"Poste" | traduction}}</span>
+                                    <input [(ngModel)]="personne.poste" type="text" class="form-control">
+                                </div>
+                                <div>
+                                    <button (click)="ajouter(personne)" class="btn btn-primary">Ajouter</button>
+                                    <button class="btn" (click)="montrerFormulaire = false">Annuler</button>
+                                </div>
+                            </div>
+                            <div>
+                                <ul>
+                                    <li class="personne" *ngFor="let cp of client.personnes">
+                                        {{cp.noms}} {{cp.prenoms}} : {{cp.poste}}
+                                        <span (click)="supprimer(cp)" class="ms-2 supprimer">
+                                            Supprimer
+                                        </span>
+                                        <br> Tel : {{cp.tel}}
+                                        <br> Email : {{cp.email}}
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -79,5 +144,4 @@
             </div>
         </div>
     </div>
-
 </div>

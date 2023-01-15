@@ -52,6 +52,10 @@ import { DashboardAssistantComponent } from './_components/dashboard-assistant/d
 import { ComptableListComponent } from './pages/comptable/comptable-list/comptable-list.component';
 import { ComptableEditComponent } from './pages/comptable/comptable-edit/comptable-edit.component';
 import { ComptableViewComponent } from './pages/comptable/comptable-view/comptable-view.component';
+import { DashboardComptableComponent } from './_components/dashboard-comptable/dashboard-comptable.component';
+import { DepartementListComponent } from './pages/departement/departement-list/departement-list.component';
+import { DepartementEditComponent } from './pages/departement/departement-edit/departement-edit.component';
+import { DepartementViewComponent } from './pages/departement/departement-view/departement-view.component';
 
 registerLocaleData(localeFr);
 
@@ -100,6 +104,10 @@ registerLocaleData(localeFr);
     ComptableListComponent,
     ComptableEditComponent,
     ComptableViewComponent,
+    DashboardComptableComponent,
+    DepartementListComponent,
+    DepartementEditComponent,
+    DepartementViewComponent,
   ],
   imports: [
     BrowserModule,
