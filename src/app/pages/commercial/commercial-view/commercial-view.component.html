@@ -18,9 +18,9 @@
     <div class="col-lg-4">
         <div class="input-group mb-3">
             <span class="input-group-text">{{"Année" | traduction}}</span>
-            <select [(ngModel)]="annee" class="form-control">
-                <option [value]="2022">2022</option>
-                <option [value]="2023">2023</option>
+            <select readonly [value]="annee" class="form-control">
+                <option readonly [value]="2022">2022</option>
+                <option readonly [value]="2023">2023</option>
             </select>
             <button (click)="refreshAll()" class="btn btn-primary">
                 Générer
@@ -103,23 +103,27 @@
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Code" | traduction}}</span>
-                                <input [(ngModel)]="commercial.code" type="text" class="form-control">
+                                <input readonly [value]="commercial.code" type="text" class="form-control">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Noms" | traduction}}</span>
-                                <input [(ngModel)]="commercial.noms" type="text" class="form-control">
+                                <input readonly [value]="commercial.noms" type="text" class="form-control">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Prénoms" | traduction}}</span>
-                                <input [(ngModel)]="commercial.prenoms" type="text" class="form-control">
+                                <input readonly [value]="commercial.prenoms" type="text" class="form-control">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Téléphone" | traduction}}</span>
-                                <input [(ngModel)]="commercial.tel" type="text" class="form-control">
+                                <input readonly [value]="commercial.tel" type="text" class="form-control">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Email" | traduction}}</span>
-                                <input [(ngModel)]="commercial.email" type="text" class="form-control">
+                                <input readonly [value]="commercial.email" type="text" class="form-control">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Département" | traduction}}</span>
+                                <input readonly [value]="commercial.departement?.nom" type="text" class="form-control">
                             </div>
                         </div>
                     </div>

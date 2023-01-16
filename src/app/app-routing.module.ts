@@ -36,6 +36,9 @@ import { ComptableViewComponent } from './pages/comptable/comptable-view/comptab
 import { DepartementEditComponent } from './pages/departement/departement-edit/departement-edit.component';
 import { DepartementListComponent } from './pages/departement/departement-list/departement-list.component';
 import { DepartementViewComponent } from './pages/departement/departement-view/departement-view.component';
+import { ProduitTypeEditComponent } from './pages/produit-type/produit-type-edit/produit-type-edit.component';
+import { ProduitTypeListComponent } from './pages/produit-type/produit-type-list/produit-type-list.component';
+import { ProduitTypeViewComponent } from './pages/produit-type/produit-type-view/produit-type-view.component';
 
 const routes: Routes = [
 
@@ -47,11 +50,6 @@ const routes: Routes = [
   { path: 'assistant/edit', component: AssistantEditComponent},
   { path: 'assistant/edit/:id', component: AssistantEditComponent},
   { path: 'assistant/view/:id', component: AssistantViewComponent},
-  
-  { path: 'produit', component: ProduitListComponent},
-  { path: 'produit/edit', component: ProduitEditComponent},
-  { path: 'produit/edit/:id', component: ProduitEditComponent},
-  { path: 'produit/view/:id', component: ProduitViewComponent},
   
   { path: 'client', component: ClientListComponent},
   { path: 'client/edit', component: ClientEditComponent},
@@ -83,6 +81,16 @@ const routes: Routes = [
   { path: 'objectifglobal/edit/:id', component: ObjectifglobalEditComponent},
   { path: 'objectifglobal/view/:id', component: ObjectifglobalViewComponent},
 
+  { path: 'produit', component: ProduitListComponent},
+  { path: 'produit/edit', component: ProduitEditComponent},
+  { path: 'produit/edit/:id', component: ProduitEditComponent},
+  { path: 'produit/view/:id', component: ProduitViewComponent},
+  
+  { path: 'produit-type', component: ProduitTypeListComponent},
+  { path: 'produit-type/edit', component: ProduitTypeEditComponent},
+  { path: 'produit-type/edit/:id', component: ProduitTypeEditComponent},
+  { path: 'produit-type/view/:id', component: ProduitTypeViewComponent},
+  
   { path: 'proforma', component: ProformaListComponent},
   { path: 'proforma/edit', component: ProformaEditComponent},
   { path: 'proforma/edit/:id', component: ProformaEditComponent},

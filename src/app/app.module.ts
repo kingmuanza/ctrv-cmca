@@ -56,6 +56,9 @@ import { DashboardComptableComponent } from './_components/dashboard-comptable/d
 import { DepartementListComponent } from './pages/departement/departement-list/departement-list.component';
 import { DepartementEditComponent } from './pages/departement/departement-edit/departement-edit.component';
 import { DepartementViewComponent } from './pages/departement/departement-view/departement-view.component';
+import { ProduitTypeListComponent } from './pages/produit-type/produit-type-list/produit-type-list.component';
+import { ProduitTypeEditComponent } from './pages/produit-type/produit-type-edit/produit-type-edit.component';
+import { ProduitTypeViewComponent } from './pages/produit-type/produit-type-view/produit-type-view.component';
 
 registerLocaleData(localeFr);
 
@@ -108,6 +111,9 @@ registerLocaleData(localeFr);
     DepartementListComponent,
     DepartementEditComponent,
     DepartementViewComponent,
+    ProduitTypeListComponent,
+    ProduitTypeEditComponent,
+    ProduitTypeViewComponent,
   ],
   imports: [
     BrowserModule,

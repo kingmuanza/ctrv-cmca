@@ -26,6 +26,9 @@
             <li *ngIf="access.produits" class="nav-item">
                 <a class="nav-link" routerLink="/produit" routerLinkActive="active">{{"Produits" | traduction}}</a>
             </li>
+            <li *ngIf="access.produits" class="nav-item">
+                <a class="nav-link" routerLink="/produit-type" routerLinkActive="active">{{"Types de Produits" | traduction}}</a>
+            </li>
             <li *ngIf="access.commerciaux" class="nav-item">
                 <a class="nav-link" routerLink="/commercial" routerLinkActive="active">{{'Commerciaux' | traduction}}</a>
             </li>

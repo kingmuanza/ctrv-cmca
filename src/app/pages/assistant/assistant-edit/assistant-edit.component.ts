@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 import { Assistant } from 'src/app/_models/assistant.model';
+import { Departement } from 'src/app/_models/departement.model';
 import { Utilisateur } from 'src/app/_models/utilisateur.model';
 import { TraductionPipe } from 'src/app/_pipes/traduction.pipe';
 import { AuthService } from 'src/app/_services/auth.service';
@@ -24,6 +25,7 @@ export class AssistantEditComponent implements OnInit {
   confirmation = ''; // Confirmatiion du mot de passe
 
   utilisateurs = new Array<Utilisateur>();
+  departements = new Array<Departement>();
 
   constructor(
     private traductionPipe: TraductionPipe,
@@ -33,19 +35,31 @@ export class AssistantEditComponent implements OnInit {
     private assistantService: CrudService<Assistant>,
     private utilisateurService: CrudService<Utilisateur>,
     private authService: AuthService,
+    private departementService: CrudService<Departement>,
   ) {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((paramMap) => {
-      const id = paramMap.get('id');
-      if (id) {
-        this.assistantService.get('assistant', id).then((data) => {
-          this.assistant = data;
-          this.isNewAssistant = false;
-          this.getUsersOfAssistant(this.assistant);
-        });
-      }
+    this.departementService.getAll('departement').then((data) => {
+      this.departements = data.filter((d) => {
+        return true;
+      });
+      this.route.paramMap.subscribe((paramMap) => {
+        const id = paramMap.get('id');
+        if (id) {
+          this.assistantService.get('assistant', id).then((data) => {
+            this.assistant = data;
+            this.isNewAssistant = false;
+            this.getUsersOfAssistant(this.assistant);
+
+            this.departements.forEach((departement) => {
+              if (this.assistant.departement && departement.id === this.assistant.departement.id) {
+                this.assistant.departement = departement;
+              }
+            });
+          });
+        }
+      });
     });
   }
 

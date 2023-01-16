@@ -3,15 +3,15 @@ import { Router } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 import { DatatablesOptions } from 'src/app/_data/datatable.option';
-import { Departement } from 'src/app/_models/departement.model';
+import { ProduitType } from 'src/app/_models/produit.type.model';
 import { CrudService } from 'src/app/_services/crud.service';
 
 @Component({
-  selector: 'app-departement-list',
-  templateUrl: './departement-list.component.html',
-  styleUrls: ['./departement-list.component.scss']
+  selector: 'app-produit-type-list',
+  templateUrl: './produit-type-list.component.html',
+  styleUrls: ['./produit-type-list.component.scss']
 })
-export class DepartementListComponent implements OnInit {
+export class ProduitTypeListComponent implements OnInit {
 
   // Datatables
   dtOptions: any = DatatablesOptions;
@@ -19,11 +19,11 @@ export class DepartementListComponent implements OnInit {
   @ViewChild(DataTableDirective) dtElement!: DataTableDirective;
   dtInstance!: Promise<DataTables.Api>;
 
-  departements = new Array<Departement>();
+  produitTypes = new Array<ProduitType>();
 
   constructor(
     private router: Router,
-    private departementService: CrudService<Departement>,
+    private produitTypeService: CrudService<ProduitType>,
   ) {    
     
   }
@@ -43,18 +43,18 @@ export class DepartementListComponent implements OnInit {
     return dtOptions;
   }
 
-  edit(departement?:Departement) {
-    if (departement) {
-      this.router.navigate(['departement', 'view', departement.id]);
+  edit(produitType?:ProduitType) {
+    if (produitType) {
+      this.router.navigate(['produit-type', 'view', produitType.id]);
     } else {
-      this.router.navigate(['departement', 'edit']);
+      this.router.navigate(['produit-type', 'edit']);
     }
   }
 
   ngOnInit(): void {
     this.dtOptions = this.initNouveau();
-    this.departementService.getAll('departement').then((data) => {
-      this.departements = data.filter((d) => {
+    this.produitTypeService.getAll('produitType').then((data) => {
+      this.produitTypes = data.filter((d) => {
         return true;
       });
       this.dtTrigger.next('');

@@ -1,3 +1,5 @@
+import { Departement } from "./departement.model";
+
 export class Assistant {
     id = 'Assistant'.toUpperCase() + new Date().getTime();
     code = '';
@@ -6,4 +8,5 @@ export class Assistant {
     description = '';
     tel = '';
     email = '';
+    departement: Departement | undefined;
 }

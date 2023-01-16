@@ -6,6 +6,7 @@ import { Utilisateur } from 'src/app/_models/utilisateur.model';
 import { TraductionPipe } from 'src/app/_pipes/traduction.pipe';
 import { CrudService } from 'src/app/_services/crud.service';
 import { AuthService } from 'src/app/_services/auth.service';
+import { Departement } from 'src/app/_models/departement.model';
 
 @Component({
   selector: 'app-commercial-edit',
@@ -24,6 +25,7 @@ export class CommercialEditComponent implements OnInit {
   confirmation = ''; // Confirmatiion du mot de passe
 
   utilisateurs = new Array<Utilisateur>();
+  departements = new Array<Departement>();
 
   constructor(
     private traductionPipe: TraductionPipe,
@@ -33,19 +35,30 @@ export class CommercialEditComponent implements OnInit {
     private commercialService: CrudService<Commercial>,
     private utilisateurService: CrudService<Utilisateur>,
     private authService: AuthService,
+    private departementService: CrudService<Departement>,
   ) {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((paramMap) => {
-      const id = paramMap.get('id');
-      if (id) {
-        this.commercialService.get('commercial', id).then((data) => {
-          this.commercial = data;
-          this.isNewCommercial = false;
-          this.getUsersOfCommercial(this.commercial);
-        });
-      }
+    this.departementService.getAll('departement').then((data) => {
+      this.departements = data.filter((d) => {
+        return true;
+      });
+      this.route.paramMap.subscribe((paramMap) => {
+        const id = paramMap.get('id');
+        if (id) {
+          this.commercialService.get('commercial', id).then((data) => {
+            this.commercial = data;
+            this.isNewCommercial = false;
+            this.getUsersOfCommercial(this.commercial);
+            this.departements.forEach((departement) => {
+              if (this.commercial.departement && departement.id === this.commercial.departement.id) {
+                this.commercial.departement = departement;
+              }
+            });            
+          });
+        }
+      });
     });
   }
 

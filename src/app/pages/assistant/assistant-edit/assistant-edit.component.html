@@ -59,6 +59,16 @@
                         <input [(ngModel)]="assistant.email" type="text" class="form-control">
                     </div>
                 </div>
+                <div class="col-lg-6">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Département" | traduction}}</span>
+                        <select [(ngModel)]="assistant.departement" type="date" class="form-control">
+                            <option [ngValue]="d" *ngFor="let d of departements">
+                                {{d.nom}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
             </div>
             <div>
                 <button (click)="save()" class="btn btn-primary">

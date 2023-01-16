@@ -23,22 +23,47 @@
         </p>
         <div class=" page-contenu ">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="input-group mb-3">
                         <span class="input-group-text">{{"Code" | traduction}}</span>
                         <input [(ngModel)]="produit.code" type="text" class="form-control">
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="input-group mb-3">
                         <span class="input-group-text">{{"Nom" | traduction}}</span>
                         <input [(ngModel)]="produit.nom" type="text" class="form-control">
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="input-group mb-3">
-                        <span class="input-group-text">{{"Price" | traduction}}</span>
-                        <input [(ngModel)]="produit.prix" type="number" class="form-control">
+                        <span class="input-group-text">{{"Type de produit" | traduction}}</span>
+                        <select [(ngModel)]="produit.type" class="form-control">
+                            <option [ngValue]="c" *ngFor="let c of produitTypes">
+                                {{c.nom}}
+                            </option>
+                        </select>
+                        <button *ngIf="produit.type" class="btn btn-dark">
+                            {{produit.type.support}}
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Prix ONG" | traduction}}</span>
+                        <input [(ngModel)]="produit.prixCategorie.ONG" type="number" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Prix Public" | traduction}}</span>
+                        <input [(ngModel)]="produit.prixCategorie.Public" type="number" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Prix Privee" | traduction}}</span>
+                        <input [(ngModel)]="produit.prixCategorie.Privee" type="number" class="form-control">
                     </div>
                 </div>
             </div>

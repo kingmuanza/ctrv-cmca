@@ -30,23 +30,27 @@
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Code" | traduction}}</span>
-                                <input [(ngModel)]="assistant.code" type="text" class="form-control">
+                                <input readonly [value]="assistant.code" type="text" class="form-control">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Noms" | traduction}}</span>
-                                <input [(ngModel)]="assistant.noms" type="text" class="form-control">
+                                <input readonly [value]="assistant.noms" type="text" class="form-control">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Prénoms" | traduction}}</span>
-                                <input [(ngModel)]="assistant.prenoms" type="text" class="form-control">
+                                <input readonly [value]="assistant.prenoms" type="text" class="form-control">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Téléphone" | traduction}}</span>
-                                <input [(ngModel)]="assistant.tel" type="text" class="form-control">
+                                <input readonly [value]="assistant.tel" type="text" class="form-control">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Email" | traduction}}</span>
-                                <input [(ngModel)]="assistant.email" type="text" class="form-control">
+                                <input readonly [value]="assistant.email" type="text" class="form-control">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Département" | traduction}}</span>
+                                <input readonly [value]="assistant.departement?.nom" type="text" class="form-control">
                             </div>
                         </div>
                     </div>

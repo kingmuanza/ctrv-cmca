@@ -1,0 +1,36 @@
+<div class="container-fluid" style="margin-top: 16px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>{{'Accueil' | traduction}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{'Types de produits' | traduction}}</li>
+        </ol>
+    </nav>
+    <h1>{{'Types de produits' | traduction}}</h1>
+    <p>
+        {{'Retrouvez tous les types de produits ici' | traduction}}
+    </p>
+
+    <div class=" page-contenu ">
+        <div class="">
+            <div class="">
+                <table datatable [dtOptions]="dtOptions " [dtTrigger]="dtTrigger " class="row-border hover ">
+                    <thead>
+                        <tr>
+                            <th>{{"Code" | traduction}}</th>
+                            <th>{{'Nom' | traduction}}</th>
+                            <th>{{'Support' | traduction}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let produitType of produitTypes" (click)="edit(produitType)">
+                            <td>{{produitType.code}}</td>
+                            <td>{{produitType.nom}}</td>
+                            <td>{{produitType.support}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

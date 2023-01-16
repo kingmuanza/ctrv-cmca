@@ -1,3 +1,5 @@
+import { Departement } from "./departement.model";
+
 export class Comptable {
     id = 'Comptable'.toUpperCase() + new Date().getTime();
     code = '';
@@ -6,4 +8,5 @@ export class Comptable {
     description = '';
     tel = '';
     email = '';
+    departement: Departement | undefined;
 }

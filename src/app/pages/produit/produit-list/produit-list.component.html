@@ -18,14 +18,22 @@
                         <tr>
                             <th>{{"Code" | traduction}}</th>
                             <th>{{'Nom' | traduction}}</th>
-                            <th>{{'Prix' | traduction}}</th>
+                            <th>{{'Type' | traduction}}</th>
+                            <th>{{'Support' | traduction}}</th>
+                            <th>{{'Prix ONG' | traduction}}</th>
+                            <th>{{'Prix Public' | traduction}}</th>
+                            <th>{{'Prix Prive' | traduction}}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let produit of produits" (click)="edit(produit)">
                             <td>{{produit.code}}</td>
                             <td>{{produit.nom}}</td>
-                            <td>{{produit.prix | nombre}}</td>
+                            <td>{{produit.type ? produit.type.nom : ''}}</td>
+                            <td>{{produit.type ? produit.type.support : ''}}</td>
+                            <td>{{(produit.prixCategorie ? produit.prixCategorie.ONG : 0) | nombre}}</td>
+                            <td>{{(produit.prixCategorie ? produit.prixCategorie.Public : 0) | nombre}}</td>
+                            <td>{{(produit.prixCategorie ? produit.prixCategorie.Privee : 0) | nombre}}</td>
                         </tr>
                     </tbody>
                 </table>

@@ -28,15 +28,42 @@
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Code" | traduction}}</span>
-                                <input [(ngModel)]="produit.code" type="text" class="form-control">
+                                <input [value]="produit.code" type="text" class="form-control">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Nom" | traduction}}</span>
-                                <input [(ngModel)]="produit.nom" type="text" class="form-control">
+                                <input [value]="produit.nom" type="text" class="form-control">
                             </div>
                             <div class="input-group mb-3">
-                                <span class="input-group-text">{{"Prix" | traduction}}</span>
-                                <input [(ngModel)]="produit.prix" type="number" class="form-control">
+                                <span class="input-group-text">{{"Type" | traduction}}</span>
+                                <input [value]="produit.type.nom" class="form-control">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Support" | traduction}}</span>
+                                <input [value]="produit.type ? produit.type.support: ''" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="produit.prixCategorie" class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <p>
+                                    {{'Informations' | traduction}}
+                                </p>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Prix ONG" | traduction}}</span>
+                                <input [value]="produit.prixCategorie.ONG | nombre" type="text" class="form-control">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Prix Public" | traduction}}</span>
+                                <input [value]="produit.prixCategorie.Public | nombre" type="text" class="form-control">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Prix Privé" | traduction}}</span>
+                                <input [value]="produit.prixCategorie.Privee | nombre" type="text" class="form-control">
                             </div>
                         </div>
                     </div>
