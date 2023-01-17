@@ -62,11 +62,11 @@ export class ProformaPrintComponent implements OnInit {
   exportAsPDF(divId: string) {
     let data : any;
     data = document.getElementById(divId);
-    html2canvas(data, { scale: 14}).then(canvas => {
+    html2canvas(data, { scale: 14, }).then(canvas => {
       const contentDataURL = canvas.toDataURL('image/jpeg')  // 'image/jpeg' 'image/png' for lower quality output.
       //let pdf = new jspdf('l', 'cm', 'a4'); //Generates PDF in landscape mode
       let pdf = new jspdf('p', 'cm', 'a4'); // Generates PDF in portrait mode
-      pdf.addImage(contentDataURL, 'JPEG', 0, 0, 21, 21.0);
+      pdf.addImage(contentDataURL, 'JPEG', 0, 0, 21, 29.7);
       pdf.save(this.proforma.id +'.pdf');
     });
   }

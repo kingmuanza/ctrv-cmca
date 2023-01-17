@@ -2,10 +2,81 @@
     Export as PDF
 </div>
 <div id="MyDIv" class="formatA4" style="height: 29.7cm;width: 21cm;padding: 1cm;">
+    <div class="row" style="text-align: center;">
+        <div class="col-lg-4">
+            <div>
+                REPUBLIQUE DU CAMEROUN
+            </div>
+            <div style="font-size: 12px;">
+                Paix - Travail - Patrie
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div style="margin-top: 20px;">
+                <img src="../../../../assets/img/logocrtv.png" style="width: 80%; height: auto;" alt="">
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div>
+                REPUBLIC OF CAMEROON
+            </div>
+            <div style="font-size: 12px;">
+                Peace - Work - Fatherland
+            </div>
+        </div>
+    </div>
+    <div class="row" style="text-align: center;">
+        <div class="col-lg-1">
 
-    <h1>
-        {{proforma.id}}
-    </h1>
+        </div>
+        <div class="col-lg-10">
+            <div style="margin-top: 5px;">
+                <div>
+                    <b>
+                        MARKETING AND COMMUNICATION AGENCY
+                    </b>
+                </div>
+                <div style="font-size: 14px;">
+                    B.P:15331 Yaoundé - Tél : +237 222 21 40 35 - Fax : +237 222 21 50 43
+                </div>
+                <div style="font-size: 12px;">
+                    SARL au Capital de 50 000 000 Fcfa
+                </div>
+                <div style="font-size: 12px;">
+                    RCCM 2001 X - N° Contribuable : NIU : MAA4 9LLB 08FD 00 - Email : cmca.biz@gmail.com
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1">
+
+        </div>
+    </div>
+
+
+    <div style="margin-top: 40px; text-align: left; font-size: 20px;">
+        <b>PROFORMA : </b> {{proforma.id}}
+        <b> du </b> {{proforma.date | date: 'dd/MM/yyyy'}}
+    </div>
+
+
+    <div style="margin-top: 20px; text-align: left; font-size: 16px;">
+        <div>
+            <b>Client : </b> {{proforma.client.nom}}
+        </div>
+        <div>
+            <b>N° de contribuable : </b> {{proforma.client.id}}
+        </div>
+        <div>
+            <b>Adresse : </b> {{proforma.client.adresse}}
+        </div>
+        <div>
+            <b>Email : </b> {{proforma.client.email}}
+        </div>
+        <div>
+            <b>Tél : </b> {{proforma.client.tel}}
+        </div>
+    </div>
 
     <div class=" page-contenu ">
         <div class="mt-4">
