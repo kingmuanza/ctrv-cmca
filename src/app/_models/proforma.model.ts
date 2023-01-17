@@ -35,4 +35,6 @@ export class Ligne {
     id = 'Ligne'.toUpperCase() + new Date().getTime();
     produit = new Produit();
     quantite = 1;
+    debut = new Date();
+    fin = new Date();
 }

@@ -1,0 +1,46 @@
+<div class="btn btn-primary" title="Share As PDF" (click)="exportAsPDF('MyDIv');">
+    Export as PDF
+</div>
+<div id="MyDIv" class="formatA4" style="height: 29.7cm;width: 21cm;padding: 1cm;">
+
+    <h1>
+        {{proforma.id}}
+    </h1>
+
+    <div class=" page-contenu ">
+        <div class="mt-4">
+            <div class="">
+                <table style="width: 19cm;" class="table row-border hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>{{"Produit" | traduction}}</th>
+                            <th>{{"Début" | traduction}}</th>
+                            <th>{{"Fin" | traduction}}</th>
+                            <th style="text-align: right;">{{'Quantité' | traduction}}</th>
+                            <th style="text-align: right;">{{'P.U' | traduction}}</th>
+                            <th style="text-align: right;">{{'Total' | traduction}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ligne of proforma.lignes">
+                            <td>{{ligne.produit.nom }}</td>
+                            <td>{{ligne.debut | date: 'yyyy-MM-dd'}}</td>
+                            <td>{{ligne.fin | date: 'yyyy-MM-dd'}}</td>
+                            <td style="text-align: right;">{{ligne.quantite }}</td>
+                            <td style="text-align: right;">{{getPU(ligne, proforma.client) | nombre}}</td>
+                            <td style="text-align: right;">{{getTotalLigne(ligne, proforma.client) | nombre}}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="5">{{"Total" | traduction}}</th>
+
+                            <th style="text-align: right;">{{getTotal(proforma.client) | nombre}}</th>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

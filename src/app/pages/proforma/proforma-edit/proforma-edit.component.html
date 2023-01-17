@@ -21,20 +21,27 @@
             {{'Supprimer' | traduction}}
         </button> {{'Modifier' | traduction}} Proforma : {{proforma.id}} de {{proforma.commercial.noms}} {{proforma.commercial.prenoms}}
     </h1>
-    <h1 *ngIf="isNewProforma" class="titre">{{'Ajouter une proforma' | traduction}}</h1>
+    <h1 *ngIf="isNewProforma" class="titre">{{'Créer une proforma' | traduction}}</h1>
 
     <div class="first-step">
-        <p>
-            {{'Informations' | traduction}}
-        </p>
         <div class=" page-contenu ">
             <div class="row">
                 <div class="col-lg-12">
+
+                    <p>
+                        {{'Informations' | traduction}}
+                    </p>
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-2">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Date" | traduction}}</span>
+                                <input readonly type="date" [ngModel]="proforma.date | date:'yyyy-MM-dd'" (ngModelChange)="proforma.date = $event" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Commercial" | traduction}}</span>
-                                <select [(ngModel)]="proforma.commercial" type="date" class="form-control">
+                                <select [(ngModel)]="proforma.commercial" type="date" class="form-control" [ngClass]="{'is-invalid': !proforma.commercial.noms && showErrors}">
                                     <option [ngValue]="commercial" *ngFor="let commercial of commercials">
                                         {{commercial.noms}}
                                         {{commercial.prenoms}}
@@ -42,23 +49,17 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text">{{"Date début" | traduction}}</span>
-                                <input type="date" [ngModel]="proforma.date | date:'yyyy-MM-dd'" (ngModelChange)="proforma.date = $event" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-5">
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Client" | traduction}}</span>
-                                <select [(ngModel)]="proforma.client" type="date" class="form-control">
+                                <select [(ngModel)]="proforma.client" class="form-control" [ngClass]="{'is-invalid': !proforma.client.nom && showErrors}">
                                     <option [ngValue]="c" *ngFor="let c of clients">
                                         {{c.nom}}
                                     </option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div style="display: none" class="col-lg-12">
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Montant" | traduction}}</span>
                                 <input [(ngModel)]="proforma.montant" type="number" class="form-control">
@@ -68,7 +69,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-12">
+                        <div style="display: none" class="col-lg-12">
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Pièces justificatives" | traduction}}</span>
                                 <input (change)="uploadFile($event)" multiple accept="image/jpeg" type="file" class="form-control">
@@ -94,11 +95,93 @@
                             <img *ngFor="let image of images" [src]="image" class=" mr-2 me-2" style="height: 300px;">
                         </ng-container>
                     </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <p class="card-title">
+                                {{'Produits' | traduction}}
+                            </p>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">{{"Produit" | traduction}}</span>
+                                        <select [(ngModel)]="produit" type="date" class="form-control">
+                                    <option [ngValue]="p" *ngFor="let p of produits">
+                                        {{p.nom}}
+                                    </option>
+                                </select>
+                                        <span *ngIf="produit.type?.support" class="input-group-text">
+                                    {{produit.type.support}}
+                                </span>
+                                    </div>
+                                </div>
 
-                    <div class="mt-3">
-                        <button (click)="save()" class="btn btn-primary">{{'Enregistrer' | traduction}}</button>
+                                <div class="col-lg-3">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">{{"Qté ou nbre de passage" | traduction}}</span>
+                                        <input [(ngModel)]="quantite" type="number" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-5">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">{{"Date de diffusion" | traduction}}</span>
+                                        <span class="input-group-text">{{"Entre le" | traduction}}</span>
+                                        <input type="date" [ngModel]="debut | date:'yyyy-MM-dd'" (ngModelChange)="debut = $event" class="form-control">
+                                        <span class="input-group-text">{{" et le" | traduction}}</span>
+                                        <input type="date" [ngModel]="fin | date:'yyyy-MM-dd'" (ngModelChange)="fin = $event" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-1">
+                                    <div>
+                                        <button style="width: 100%;" (click)="ajouterLigne()" class="btn btn-primary">Ajouter</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class=" page-contenu ">
+                                <div class="mt-4">
+                                    <div class="">
+                                        <table class="table row-border hover table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>{{"Produit" | traduction}}</th>
+                                                    <th>{{"Début" | traduction}}</th>
+                                                    <th>{{"Fin" | traduction}}</th>
+                                                    <th style="text-align: right;">{{'Quantité' | traduction}}</th>
+                                                    <th style="text-align: right;">{{'P.U' | traduction}}</th>
+                                                    <th style="text-align: right;">{{'Total' | traduction}}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let ligne of proforma.lignes">
+                                                    <td>{{ligne.produit.nom }}</td>
+                                                    <td>{{ligne.debut }}</td>
+                                                    <td>{{ligne.fin }}</td>
+                                                    <td style="text-align: right;">{{ligne.quantite }}</td>
+                                                    <td style="text-align: right;">{{getPU(ligne, proforma.client) | nombre}}</td>
+                                                    <td style="text-align: right;">{{getTotalLigne(ligne, proforma.client) | nombre}}</td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th colspan="5">{{"Total" | traduction}}</th>
+
+                                                    <th style="text-align: right;">{{getTotal(proforma.client) | nombre}}</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="mt-3">
+                <button (click)="save()" class="btn btn-primary">{{'Enregistrer la proforma' | traduction}}</button>
             </div>
         </div>
 

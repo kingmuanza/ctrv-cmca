@@ -59,6 +59,7 @@ import { DepartementViewComponent } from './pages/departement/departement-view/d
 import { ProduitTypeListComponent } from './pages/produit-type/produit-type-list/produit-type-list.component';
 import { ProduitTypeEditComponent } from './pages/produit-type/produit-type-edit/produit-type-edit.component';
 import { ProduitTypeViewComponent } from './pages/produit-type/produit-type-view/produit-type-view.component';
+import { ProformaPrintComponent } from './pages/proforma/proforma-print/proforma-print.component';
 
 registerLocaleData(localeFr);
 
@@ -114,6 +115,7 @@ registerLocaleData(localeFr);
     ProduitTypeListComponent,
     ProduitTypeEditComponent,
     ProduitTypeViewComponent,
+    ProformaPrintComponent,
   ],
   imports: [
     BrowserModule,

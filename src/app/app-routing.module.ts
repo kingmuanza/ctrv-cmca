@@ -39,6 +39,7 @@ import { DepartementViewComponent } from './pages/departement/departement-view/d
 import { ProduitTypeEditComponent } from './pages/produit-type/produit-type-edit/produit-type-edit.component';
 import { ProduitTypeListComponent } from './pages/produit-type/produit-type-list/produit-type-list.component';
 import { ProduitTypeViewComponent } from './pages/produit-type/produit-type-view/produit-type-view.component';
+import { ProformaPrintComponent } from './pages/proforma/proforma-print/proforma-print.component';
 
 const routes: Routes = [
 
@@ -95,6 +96,7 @@ const routes: Routes = [
   { path: 'proforma/edit', component: ProformaEditComponent},
   { path: 'proforma/edit/:id', component: ProformaEditComponent},
   { path: 'proforma/view/:id', component: ProformaViewComponent},
+  { path: 'proforma/print/:id', component: ProformaPrintComponent},
 
   { path: 'proformavalide', component: ProformavalideListComponent},
   { path: 'proformavalide/edit', component: ProformavalideEditComponent},
