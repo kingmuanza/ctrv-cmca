@@ -1,7 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
-import { Proforma } from 'src/app/_models/proforma.model';
+import { Client } from 'src/app/_models/client.model';
+import { Ligne, Proforma } from 'src/app/_models/proforma.model';
 import { CrudService } from 'src/app/_services/crud.service';
 
 @Component({
@@ -41,6 +42,34 @@ export class ProformaViewComponent implements OnInit {
     
   }
 
+  getPU(ligne: Ligne, client: Client): number {
+    let resultat = 0;
+    if (client.categorie === 'ONG') {
+      return ligne.produit.prixCategorie.ONG;
+    }
+    if (client.categorie === 'Public') {
+      return ligne.produit.prixCategorie.Public;
+    }
+    if (client.categorie === 'Privee') {
+      return ligne.produit.prixCategorie.Privee;
+    }
+    return resultat;
+  }
+
+  getTotalLigne(ligne: Ligne, client: Client) {
+    let resultat = 0;
+    resultat = ligne.quantite * this.getPU(ligne, client)
+    return resultat;
+  }
+
+  getTotal(client: Client) {
+    let resultat = 0;
+    this.proforma.lignes.forEach((ligne) => {
+      resultat += this.getTotalLigne(ligne, client)
+    });
+    this.proforma.montant = resultat;
+    return resultat;
+  }
   save() {
     console.log('saving');
     if (this.isNewProforma) {

@@ -151,16 +151,22 @@
                                                     <th style="text-align: right;">{{'Quantité' | traduction}}</th>
                                                     <th style="text-align: right;">{{'P.U' | traduction}}</th>
                                                     <th style="text-align: right;">{{'Total' | traduction}}</th>
+                                                    <th style="text-align: center;">{{'Actions' | traduction}}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr *ngFor="let ligne of proforma.lignes">
                                                     <td>{{ligne.produit.nom }}</td>
-                                                    <td>{{ligne.debut }}</td>
-                                                    <td>{{ligne.fin }}</td>
+                                                    <td>{{ligne.debut | date: 'yyyy-MM-dd'}}</td>
+                                                    <td>{{ligne.fin | date: 'yyyy-MM-dd'}}</td>
                                                     <td style="text-align: right;">{{ligne.quantite }}</td>
                                                     <td style="text-align: right;">{{getPU(ligne, proforma.client) | nombre}}</td>
                                                     <td style="text-align: right;">{{getTotalLigne(ligne, proforma.client) | nombre}}</td>
+                                                    <td style="text-align: center;">
+                                                        <button class="btn btn-danger btn-sm" (click)="supprimerLigne(ligne)">
+                                                            Supprimer
+                                                        </button>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                             <tfoot>

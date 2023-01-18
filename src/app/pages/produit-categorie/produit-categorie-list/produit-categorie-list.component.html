@@ -2,12 +2,12 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a>{{'Accueil' | traduction}}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{'Types de produits' | traduction}}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{'Categories de produits' | traduction}}</li>
         </ol>
     </nav>
-    <h1>{{'Types de produits' | traduction}}</h1>
+    <h1>{{'Categories de produits' | traduction}}</h1>
     <p>
-        {{'Retrouvez tous les types de produits ici' | traduction}}
+        {{'Retrouvez tous les categories de produits ici' | traduction}}
     </p>
 
     <div class=" page-contenu ">
@@ -22,10 +22,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let produitType of produitTypes" (click)="edit(produitType)">
-                            <td>{{produitType.code}}</td>
-                            <td>{{produitType.nom}}</td>
-                            <td>{{produitType.support}}</td>
+                        <tr *ngFor="let produitCategorie of produitCategories" (click)="edit(produitCategorie)">
+                            <td>{{produitCategorie.code}}</td>
+                            <td>{{produitCategorie.nom}}</td>
+                            <td>{{produitCategorie.type.nom}}</td>
                         </tr>
                     </tbody>
                 </table>

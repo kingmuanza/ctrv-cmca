@@ -40,6 +40,9 @@ import { ProduitTypeEditComponent } from './pages/produit-type/produit-type-edit
 import { ProduitTypeListComponent } from './pages/produit-type/produit-type-list/produit-type-list.component';
 import { ProduitTypeViewComponent } from './pages/produit-type/produit-type-view/produit-type-view.component';
 import { ProformaPrintComponent } from './pages/proforma/proforma-print/proforma-print.component';
+import { ProduitCategorieEditComponent } from './pages/produit-categorie/produit-categorie-edit/produit-categorie-edit.component';
+import { ProduitCategorieListComponent } from './pages/produit-categorie/produit-categorie-list/produit-categorie-list.component';
+import { ProduitCategorieViewComponent } from './pages/produit-categorie/produit-categorie-view/produit-categorie-view.component';
 
 const routes: Routes = [
 
@@ -91,6 +94,11 @@ const routes: Routes = [
   { path: 'produit-type/edit', component: ProduitTypeEditComponent},
   { path: 'produit-type/edit/:id', component: ProduitTypeEditComponent},
   { path: 'produit-type/view/:id', component: ProduitTypeViewComponent},
+  
+  { path: 'produit-categorie', component: ProduitCategorieListComponent},
+  { path: 'produit-categorie/edit', component: ProduitCategorieEditComponent},
+  { path: 'produit-categorie/edit/:id', component: ProduitCategorieEditComponent},
+  { path: 'produit-categorie/view/:id', component: ProduitCategorieViewComponent},
   
   { path: 'proforma', component: ProformaListComponent},
   { path: 'proforma/edit', component: ProformaEditComponent},

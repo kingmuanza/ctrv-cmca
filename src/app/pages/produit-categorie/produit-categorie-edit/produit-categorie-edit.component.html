@@ -2,21 +2,25 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a>{{'Accueil' | traduction}}</a></li>
-            <li class="breadcrumb-item"><a class="text-primary" [routerLink]="'/produit'">{{'Produits' |
-                    traduction}}</a></li>
-            <li class="breadcrumb-item active" *ngIf="isNewProduit">{{'Nouveau' | traduction}}</li>
+            <li class="breadcrumb-item"><a class="text-primary" [routerLink]="'/produit-categorie'">{{'Catégories de produits' | traduction}}</a></li>
+            <li class="breadcrumb-item active" *ngIf="isNewProduitCategorie">{{'Nouveau' | traduction}}</li>
 
-            <li class="breadcrumb-item active" *ngIf="!isNewProduit"><a class="text-primary" [routerLink]="'/produit/view/' + produit.id">{{produit.nom}}</a></li>
-            <li class="breadcrumb-item active" *ngIf="!isNewProduit">{{'Editer' | traduction}}</li>
+            <li class="breadcrumb-item active" *ngIf="!isNewProduitCategorie">
+                <a class="text-primary" [routerLink]="'/produitCategorie/view/' + produitCategorie.id">
+                    {{produitCategorie.nom}}
+                </a>
+            </li>
+
+            <li class="breadcrumb-item active" *ngIf="!isNewProduitCategorie">{{'Editer' | traduction}}</li>
         </ol>
     </nav>
 
-    <h1 *ngIf="!isNewProduit" class="titre">
+    <h1 *ngIf="!isNewProduitCategorie" class="titre">
         <button style="float: right;" (click)="delete()" class="btn btn-danger btn-error">
             {{'Supprimer' | traduction}}
-        </button> {{'Modifier : ' | traduction}} {{produit.nom}}
+        </button> {{'Modifier : ' | traduction}} {{produitCategorie.nom}}
     </h1>
-    <h1 *ngIf="isNewProduit" class="titre">{{'Ajouter un produit' | traduction}}</h1>
+    <h1 *ngIf="isNewProduitCategorie" class="titre">{{'Ajouter une catégorie de produit' | traduction}}</h1>
 
     <div class="first-step">
         <p>
@@ -34,10 +38,10 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-8">
                     <div class="input-group mb-3">
                         <span class="input-group-text">{{"Type de produit" | traduction}}</span>
-                        <select [disabled]="!media" [(ngModel)]="produit.type" class="form-control">
+                        <select [disabled]="!media" [(ngModel)]="produitCategorie.type" class="form-control">
                             <ng-container *ngFor="let c of produitTypes">
                                 <option [ngValue]="c" *ngIf="c.support === media">
                                     {{c.nom}}
@@ -49,31 +53,13 @@
                 <div class="col-lg-4">
                     <div class="input-group mb-3">
                         <span class="input-group-text">{{"Code" | traduction}}</span>
-                        <input [(ngModel)]="produit.code" type="text" class="form-control">
+                        <input [(ngModel)]="produitCategorie.code" categorie="text" class="form-control">
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-8">
                     <div class="input-group mb-3">
                         <span class="input-group-text">{{"Nom" | traduction}}</span>
-                        <input [(ngModel)]="produit.nom" type="text" class="form-control">
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">{{"Prix ONG" | traduction}}</span>
-                        <input [(ngModel)]="produit.prixCategorie.ONG" type="number" class="form-control">
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">{{"Prix Public" | traduction}}</span>
-                        <input [(ngModel)]="produit.prixCategorie.Public" type="number" class="form-control">
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">{{"Prix Privee" | traduction}}</span>
-                        <input [(ngModel)]="produit.prixCategorie.Privee" type="number" class="form-control">
+                        <input [(ngModel)]="produitCategorie.nom" categorie="text" class="form-control">
                     </div>
                 </div>
             </div>

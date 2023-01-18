@@ -29,7 +29,7 @@
         </p>
         <div class=" page-contenu ">
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <div class="input-group mb-3">
                         <span class="input-group-text">{{"Code" | traduction}}</span>
                         <input [(ngModel)]="client.code" type="text" class="form-control">
@@ -39,6 +39,12 @@
                     <div class="input-group mb-3">
                         <span class="input-group-text">{{"Nom" | traduction}}</span>
                         <input [(ngModel)]="client.nom" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">{{"Numéro de contribuable" | traduction}}</span>
+                        <input [(ngModel)]="client.contribuable" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-lg-6">

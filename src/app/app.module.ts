@@ -60,6 +60,9 @@ import { ProduitTypeListComponent } from './pages/produit-type/produit-type-list
 import { ProduitTypeEditComponent } from './pages/produit-type/produit-type-edit/produit-type-edit.component';
 import { ProduitTypeViewComponent } from './pages/produit-type/produit-type-view/produit-type-view.component';
 import { ProformaPrintComponent } from './pages/proforma/proforma-print/proforma-print.component';
+import { ProduitCategorieListComponent } from './pages/produit-categorie/produit-categorie-list/produit-categorie-list.component';
+import { ProduitCategorieEditComponent } from './pages/produit-categorie/produit-categorie-edit/produit-categorie-edit.component';
+import { ProduitCategorieViewComponent } from './pages/produit-categorie/produit-categorie-view/produit-categorie-view.component';
 
 registerLocaleData(localeFr);
 
@@ -116,6 +119,9 @@ registerLocaleData(localeFr);
     ProduitTypeEditComponent,
     ProduitTypeViewComponent,
     ProformaPrintComponent,
+    ProduitCategorieListComponent,
+    ProduitCategorieEditComponent,
+    ProduitCategorieViewComponent,
   ],
   imports: [
     BrowserModule,

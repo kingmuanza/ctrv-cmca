@@ -2,18 +2,18 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a>{{'Accueil' | traduction}}</a></li>
-            <li class="breadcrumb-item"><a class="text-primary" [routerLink]="'/produit-type'">{{'Types de produits' | traduction}}</a></li>
-            <li class="breadcrumb-item active" *ngIf="isNewProduitType">{{'Nouveau' | traduction}}</li>
+            <li class="breadcrumb-item"><a class="text-primary" [routerLink]="'/produit-categorie'">{{'Categories de produits' | traduction}}</a></li>
+            <li class="breadcrumb-item active" *ngIf="isNewProduitCategorie">{{'Nouveau' | traduction}}</li>
 
-            <li class="breadcrumb-item active" *ngIf="!isNewProduitType">
-                {{produitType.nom}}
+            <li class="breadcrumb-item active" *ngIf="!isNewProduitCategorie">
+                {{produitCategorie.nom}}
             </li>
         </ol>
     </nav>
 
-    <a class="text-primary" [routerLink]="'/produit-type/edit/' + produitType.id" style="float: right;">{{'Modifier' | traduction}}</a>
-    <h1 *ngIf="!isNewProduitType" class="titre">
-        {{produitType.nom}}
+    <a class="text-primary" [routerLink]="'/produit-categorie/edit/' + produitCategorie.id" style="float: right;">{{'Modifier' | traduction}}</a>
+    <h1 *ngIf="!isNewProduitCategorie" class="titre">
+        {{produitCategorie.nom}}
     </h1>
 
     <div class="first-step">
@@ -63,15 +63,15 @@
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Code" | traduction}}</span>
-                                <input readonly [value]="produitType.code" type="text" class="form-control">
+                                <input readonly [value]="produitCategorie.code" categorie="text" class="form-control">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Nom" | traduction}}</span>
-                                <input readonly [value]="produitType.nom" type="text" class="form-control">
+                                <input readonly [value]="produitCategorie.nom" categorie="text" class="form-control">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Média" | traduction}}</span>
-                                <input readonly [value]="produitType.support" class="form-control">
+                                <input readonly [value]="produitCategorie.type.nom" class="form-control">
                             </div>
                         </div>
                     </div>

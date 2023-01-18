@@ -63,23 +63,27 @@
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Code" | traduction}}</span>
-                                <input readonly [(ngModel)]="client.code" type="text" class="form-control">
+                                <input readonly [value]="client.code" type="text" class="form-control">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Nom" | traduction}}</span>
-                                <input readonly [(ngModel)]="client.nom" type="text" class="form-control">
+                                <input readonly [value]="client.nom" type="text" class="form-control">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">{{"Numéro de contribuable" | traduction}}</span>
+                                <input readonly [value]="client.contribuable" type="text" class="form-control">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Téléphone" | traduction}}</span>
-                                <input readonly [(ngModel)]="client.tel" type="text" class="form-control">
+                                <input readonly [value]="client.tel" type="text" class="form-control">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Email" | traduction}}</span>
-                                <input readonly [(ngModel)]="client.email" type="text" class="form-control">
+                                <input readonly [value]="client.email" type="text" class="form-control">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">{{"Categorie" | traduction}}</span>
-                                <select [(ngModel)]="client.categorie" class="form-control">
+                                <select [value]="client.categorie" class="form-control">
                                     <option value="ONG">ONG</option>
                                     <option value="Public">Entreprise publique</option>
                                     <option value="Privee">Entreprise privée</option>

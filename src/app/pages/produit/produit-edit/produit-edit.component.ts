@@ -16,6 +16,8 @@ export class ProduitEditComponent implements OnInit {
   produit = new Produit();
   isNewProduit = true;
 
+  media = '';
+
   produitTypes = new Array<ProduitType>();
 
   constructor(
@@ -40,6 +42,7 @@ export class ProduitEditComponent implements OnInit {
           this.produitService.get('produit', id).then((data) => {
             this.produit = data;
             this.isNewProduit = false;
+            this.media = this.produit.type.support;
             this.produitTypes.forEach((produitType) => {
               if(this.produit.type && this.produit.type.id === produitType.id) {
                 this.produit.type = produitType;

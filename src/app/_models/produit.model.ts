@@ -1,3 +1,4 @@
+import { ProduitCategorie } from "./produit.categorie.model";
 import { ProduitType } from "./produit.type.model";
 
 export class Produit {
@@ -12,4 +13,5 @@ export class Produit {
         Privee: 0,
     }
     type = new ProduitType();
+    categorie = new ProduitCategorie();
 }

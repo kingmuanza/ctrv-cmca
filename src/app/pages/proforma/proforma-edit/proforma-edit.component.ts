@@ -200,7 +200,11 @@ export class ProformaEditComponent implements OnInit {
     this.proforma.montant = resultat;
     return resultat;
   }
-
+  supprimerLigne(ligne: Ligne) {
+    this.proforma.lignes = this.proforma.lignes.filter((l) => {
+      return l.id !== ligne.id;
+    });
+  }
   delete() {
     const phrase = this.traductionPipe.transform('Etes-vous sûr de vouloir supprimer cet élément ?');
     const oui = confirm(phrase);
